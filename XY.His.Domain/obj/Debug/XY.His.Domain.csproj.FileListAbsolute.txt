@@ -1,0 +1,12 @@
+D:\SVN\XY.His.Api\XY.His.Api\release\XY.His.Domain.dll.config
+D:\SVN\XY.His.Api\XY.His.Api\release\XY.His.Domain.dll
+D:\SVN\XY.His.Api\XY.His.Api\release\XY.His.Domain.pdb
+D:\SVN\XY.His.Api\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.csprojResolveAssemblyReference.cache
+D:\SVN\XY.His.Api\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.dll
+D:\SVN\XY.His.Api\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.pdb
+D:\SVN\XY.His.Api\release\XY.His.Domain.dll.config
+D:\SVN\XY.His.Api\release\XY.His.Domain.dll
+D:\SVN\XY.His.Api\release\XY.His.Domain.pdb
+D:\SVN\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.csprojResolveAssemblyReference.cache
+D:\SVN\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.dll
+D:\SVN\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.pdb

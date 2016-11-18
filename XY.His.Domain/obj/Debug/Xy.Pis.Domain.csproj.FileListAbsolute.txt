@@ -1,0 +1,12 @@
+D:\SVN\SHPIS\release\Xy.Pis.Domain.dll.config
+D:\SVN\SHPIS\release\Xy.Pis.Domain.dll
+D:\SVN\SHPIS\release\Xy.Pis.Domain.pdb
+D:\SVN\SHPIS\Xy.Pis.Domain\obj\Debug\Xy.Pis.Domain.csprojResolveAssemblyReference.cache
+D:\SVN\SHPIS\Xy.Pis.Domain\obj\Debug\Xy.Pis.Domain.dll
+D:\SVN\SHPIS\Xy.Pis.Domain\obj\Debug\Xy.Pis.Domain.pdb
+D:\SVN\XY.His.Api\XY.His.Api\Xy.Pis.Domain\obj\Debug\Xy.Pis.Domain.dll
+D:\SVN\XY.His.Api\XY.His.Api\Xy.Pis.Domain\obj\Debug\Xy.Pis.Domain.pdb
+D:\SVN\XY.His.Api\XY.His.Api\Xy.Pis.Domain\obj\Debug\Xy.Pis.Domain.csprojResolveAssemblyReference.cache
+D:\SVN\XY.His.Api\XY.His.Api\release\Xy.Pis.Domain.dll.config
+D:\SVN\XY.His.Api\XY.His.Api\release\Xy.Pis.Domain.dll
+D:\SVN\XY.His.Api\XY.His.Api\release\Xy.Pis.Domain.pdb

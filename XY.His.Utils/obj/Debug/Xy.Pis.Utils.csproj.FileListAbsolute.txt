@@ -1,0 +1,13 @@
+D:\SVN\SHPIS\release\Xy.Pis.Utils.dll.config
+D:\SVN\SHPIS\release\Xy.Pis.Utils.dll
+D:\SVN\SHPIS\release\Xy.Pis.Utils.pdb
+D:\SVN\SHPIS\Xy.Pis.Utils\obj\Debug\Xy.Pis.Utils.csproj.App.config
+D:\SVN\SHPIS\Xy.Pis.Utils\obj\Debug\Xy.Pis.Utils.csprojResolveAssemblyReference.cache
+D:\SVN\SHPIS\Xy.Pis.Utils\obj\Debug\Xy.Pis.Utils.dll
+D:\SVN\SHPIS\Xy.Pis.Utils\obj\Debug\Xy.Pis.Utils.pdb
+D:\SVN\XY.His.Api\XY.His.Api\Xy.Pis.Utils\obj\Debug\Xy.Pis.Utils.dll
+D:\SVN\XY.His.Api\XY.His.Api\Xy.Pis.Utils\obj\Debug\Xy.Pis.Utils.pdb
+D:\SVN\XY.His.Api\XY.His.Api\Xy.Pis.Utils\obj\Debug\Xy.Pis.Utils.csproj.App.config
+D:\SVN\XY.His.Api\XY.His.Api\release\Xy.Pis.Utils.dll.config
+D:\SVN\XY.His.Api\XY.His.Api\release\Xy.Pis.Utils.dll
+D:\SVN\XY.His.Api\XY.His.Api\release\Xy.Pis.Utils.pdb

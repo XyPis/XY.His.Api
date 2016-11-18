@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{49A6FDB7-71E1-4E90-924D-1558F27E149C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XY.His</RootNamespace>
+    <AssemblyName>XY.His.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="BS\BsDoctor.cs" />
+    <Compile Include="BS\BsGroupSub2.cs" />
+    <Compile Include="BS\BsInvInItem.cs" />
+    <Compile Include="BS\BsInvMzItem.cs" />
+    <Compile Include="BS\BsItemAttach.cs" />
+    <Compile Include="BS\BsItemItem.cs" />
+    <Compile Include="BS\BsItemNameMulti.cs" />
+    <Compile Include="BS\Mapping\BsItemNameMultiMap.cs" />
+    <Compile Include="BS\BsUnitRatio.cs" />
+    <Compile Include="BS\Mapping\BsUnitRatioMap.cs" />
+    <Compile Include="BS\Mapping\BsItemAttachMap.cs" />
+    <Compile Include="BS\BsItemDrug.cs" />
+    <Compile Include="BS\BsItemFrequency.cs" />
+    <Compile Include="BS\BsItemIllType.cs" />
+    <Compile Include="BS\Mapping\BsItemIllTypeMap.cs" />
+    <Compile Include="BS\Mapping\BsItemItemMap.cs" />
+    <Compile Include="BS\BsItemLocation.cs" />
+    <Compile Include="BS\BsItemName.cs" />
+    <Compile Include="BS\BsItemPatType.cs" />
+    <Compile Include="BS\Mapping\BsItemNameMap.cs" />
+    <Compile Include="BS\Mapping\BsItemPatTypeMap.cs" />
+    <Compile Include="BS\BsItemUnit.cs" />
+    <Compile Include="BS\Mapping\BsItemUnitMap.cs" />
+    <Compile Include="BS\BsItemUsage.cs" />
+    <Compile Include="BS\Mapping\BsItemUsageMap.cs" />
+    <Compile Include="BS\Mapping\BsItemLocationMap.cs" />
+    <Compile Include="BS\Mapping\BsItemFrequencyMap.cs" />
+    <Compile Include="BS\Mapping\BsItemDrugMap.cs" />
+    <Compile Include="BS\BsItemEquipment.cs" />
+    <Compile Include="BS\Mapping\BsItemEquipmentMap.cs" />
+    <Compile Include="BS\BsItemPacs.cs" />
+    <Compile Include="BS\Mapping\BsItemPacsMap.cs" />
+    <Compile Include="BS\BsItemYb.cs" />
+    <Compile Include="BS\Mapping\BsItemYbMap.cs" />
+    <Compile Include="BS\BsRoom.cs" />
+    <Compile Include="BS\BsRoomWindow.cs" />
+    <Compile Include="BS\BsTallyGroup.cs" />
+    <Compile Include="BS\Mapping\BsTallyGroupMap.cs" />
+    <Compile Include="BS\Mapping\BsRoomMap.cs" />
+    <Compile Include="BS\Mapping\BsRoomWindowMap.cs" />
+    <Compile Include="BS\Mapping\BsUserMap.cs" />
+    <Compile Include="BS\Mapping\BsUserRoleMap.cs" />
+    <Compile Include="BS\Mapping\BsGroupMap.cs" />
+    <Compile Include="BS\Mapping\BsGroupSub2Map.cs" />
+    <Compile Include="BS\Mapping\BsGroupSubMap.cs" />
+    <Compile Include="BS\Mapping\BsInvInItemMap.cs" />
+    <Compile Include="BS\Mapping\BsInvMzItemMap.cs" />
+    <Compile Include="BS\Mapping\BsMzFeetyMap.cs" />
+    <Compile Include="BS\BsFrequency.cs" />
+    <Compile Include="BS\Mapping\BsFrequencyMap.cs" />
+    <Compile Include="BS\BsGfxe.cs" />
+    <Compile Include="BS\Mapping\BsGfxeMap.cs" />
+    <Compile Include="BS\BsGroup.cs" />
+    <Compile Include="BS\BsGroupSub.cs" />
+    <Compile Include="BS\BsItem.cs" />
+    <Compile Include="BS\Mapping\BsItemMap.cs" />
+    <Compile Include="BS\BsLocation.cs" />
+    <Compile Include="BS\Mapping\BsLocationMap.cs" />
+    <Compile Include="BS\BsMzFeety.cs" />
+    <Compile Include="BS\BsUnit.cs" />
+    <Compile Include="BS\Mapping\BsUnitMap.cs" />
+    <Compile Include="BS\BsUsage.cs" />
+    <Compile Include="BS\Mapping\BsUsageMap.cs" />
+    <Compile Include="BS\BsZyFeety.cs" />
+    <Compile Include="BS\Mapping\BsZyFeetyMap.cs" />
+    <Compile Include="BS\BsUser.cs" />
+    <Compile Include="BS\BsUserRole.cs" />
+    <Compile Include="EntityBase.cs" />
+    <Compile Include="Gbl\GblModule.cs" />
+    <Compile Include="Gbl\GblRole.cs" />
+    <Compile Include="Gbl\GblRoleModule.cs" />
+    <Compile Include="Gbl\GblSystem.cs" />
+    <Compile Include="Gbl\GblSystemFunction.cs" />
+    <Compile Include="Gbl\GblSystemMenu.cs" />
+    <Compile Include="Gbl\Mapping\Gbl\GblModuleMap.cs" />
+    <Compile Include="Gbl\Mapping\Gbl\GblRoleMap.cs" />
+    <Compile Include="Gbl\Mapping\Gbl\GblRoleModuleMap.cs" />
+    <Compile Include="Gbl\Mapping\Gbl\GblSettingMap.cs" />
+    <Compile Include="Gbl\GblSetting.cs" />
+    <Compile Include="Gbl\Mapping\Gbl\GblSystemFunctionMap.cs" />
+    <Compile Include="Gbl\Mapping\Gbl\GblSystemMap.cs" />
+    <Compile Include="Gbl\Mapping\Gbl\GblSystemMenuMap.cs" />
+    <Compile Include="IN\InAdviceLong.cs" />
+    <Compile Include="IN\InAdviceWeekDay.cs" />
+    <Compile Include="IN\Mapping\InAdviceWeekDayMap.cs" />
+    <Compile Include="IN\Mapping\InAdviceLongMap.cs" />
+    <Compile Include="IN\InChinRicipe.cs" />
+    <Compile Include="IN\InChinRicipeDtl.cs" />
+    <Compile Include="IN\InChinRicipExec.cs" />
+    <Compile Include="IN\InHosInfo.cs" />
+    <Compile Include="BS\Mapping\BsDoctorMap.cs" />
+    <Compile Include="IN\Mapping\InChinRicipeDtlMap.cs" />
+    <Compile Include="IN\Mapping\InChinRicipeMap.cs" />
+    <Compile Include="IN\Mapping\InChinRicipExecMap.cs" />
+    <Compile Include="IN\Mapping\InHosInfoMap.cs" />
+    <Compile Include="IN\InAdviceAuthDtl.cs" />
+    <Compile Include="IN\Mapping\InAdviceAuthDtlMap.cs" />
+    <Compile Include="BS\BsDocLevel.cs" />
+    <Compile Include="BS\Mapping\BsDocLevelMap.cs" />
+    <Compile Include="BS\BsDrugForm.cs" />
+    <Compile Include="BS\Mapping\BsDrugFormMap.cs" />
+    <Compile Include="BS\BsLimitDocLev.cs" />
+    <Compile Include="BS\Mapping\BsLimitDocLevMap.cs" />
+    <Compile Include="BS\BsLocPatType.cs" />
+    <Compile Include="BS\BsPatient.cs" />
+    <Compile Include="BS\Mapping\BsPatientMap.cs" />
+    <Compile Include="BS\BsPatType.cs" />
+    <Compile Include="BS\Mapping\BsPatTypeMap.cs" />
+    <Compile Include="BS\BsTallyType.cs" />
+    <Compile Include="BS\Mapping\BsTallyTypeMap.cs" />
+    <Compile Include="BS\BsXdRp.cs" />
+    <Compile Include="BS\BsXdRpDtl.cs" />
+    <Compile Include="BS\Mapping\BsXdRpDtlMap.cs" />
+    <Compile Include="BS\Mapping\BsXdRpMap.cs" />
+    <Compile Include="IN\InDrugReqBack.cs" />
+    <Compile Include="IN\Mapping\InDrugReqBackMap.cs" />
+    <Compile Include="IN\InInvoice.cs" />
+    <Compile Include="IN\InInvoiceDtl.cs" />
+    <Compile Include="IN\Mapping\InInvoiceDtlMap.cs" />
+    <Compile Include="IN\Mapping\InInvoiceMap.cs" />
+    <Compile Include="BS\Mapping\BsLocPatTypeMap.cs" />
+    <Compile Include="IN\InAdviceGroup.cs" />
+    <Compile Include="IN\Mapping\InAdviceGroupMap.cs" />
+    <Compile Include="IN\InAdviceTemp.cs" />
+    <Compile Include="IN\Mapping\InAdviceTempMap.cs" />
+    <Compile Include="IN\InDrugReqdtl.cs" />
+    <Compile Include="IN\Mapping\InDrugReqdtlMap.cs" />
+    <Compile Include="IN\InExecute.cs" />
+    <Compile Include="IN\Mapping\InExecuteMap.cs" />
+    <Compile Include="IN\InInvoiceDtlDump.cs" />
+    <Compile Include="IN\Mapping\InInvoiceDtlDumpMap.cs" />
+    <Compile Include="IN\InPatFeesList.cs" />
+    <Compile Include="IN\Mapping\InPatFeesListMap.cs" />
+    <Compile Include="OP\PsExecute.cs" />
+    <Compile Include="OP\Mapping\PsExecuteMap.cs" />
+    <Compile Include="OU\OuClincDiag.cs" />
+    <Compile Include="OU\Mapping\OuClincDiagMap.cs" />
+    <Compile Include="OU\OuHosInfo.cs" />
+    <Compile Include="OU\Mapping\OuHosInfoMap.cs" />
+    <Compile Include="OU\OuInvoice.cs" />
+    <Compile Include="OU\OuInvoiceDtl.cs" />
+    <Compile Include="OU\Mapping\OuInvoiceDtlMap.cs" />
+    <Compile Include="OU\Mapping\OuInvoiceMap.cs" />
+    <Compile Include="OU\OulInvoiceReg.cs" />
+    <Compile Include="OU\Mapping\OulInvoiceRegMap.cs" />
+    <Compile Include="OU\OuRecipe.cs" />
+    <Compile Include="OU\OuRecipeDtl.cs" />
+    <Compile Include="OU\Mapping\OuRecipeDtlMap.cs" />
+    <Compile Include="OU\Mapping\OuRecipeMap.cs" />
+    <Compile Include="OP\OpApplyReport.cs" />
+    <Compile Include="OP\Mapping\OpApplyReportMap.cs" />
+    <Compile Include="RM\Mapping\RmstoreMap.cs" />
+    <Compile Include="RM\Mapping\RmZyOutDtlMap.cs" />
+    <Compile Include="RM\Mapping\RmZyOutMap.cs" />
+    <Compile Include="RM\Rmstore.cs" />
+    <Compile Include="RM\RmZyOut.cs" />
+    <Compile Include="RM\RmZyOutDtl.cs" />
+    <Compile Include="XyDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xy.His.Contract\XY.His.Contract.csproj">
+      <Project>{445a7abd-9bfd-4bb0-a92a-e790b9aa7f09}</Project>
+      <Name>XY.His.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

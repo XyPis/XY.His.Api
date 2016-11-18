@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{58088072-9A67-4748-9128-29CA43BE9458}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XY.His.Service</RootNamespace>
+    <AssemblyName>XY.His.Service.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>bcc5e6e9</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="xunit, Version=1.9.2.1705, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise />
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\BS\BSItemIllTypeServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemItemServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemNameServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSUnitRatioServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemNameMultiServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemPatTypeServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemAttachServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemFrequencyServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemUnitServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemUsageServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemYbServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemLocationServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemPacsServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemEquipmentServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSItemDrugServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSGroupServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSPatientServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSPatTypeServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSTallyTypeServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSInvInItemServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSInvMzItemServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSTallyGroupServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSGfxeServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSGroupSubServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSMzFeetyServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSUnitServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSUserRoleServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSDocLevelServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSLimitDocLevServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSZyFeetyServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSXdRpServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSUserServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSGroupSub2ServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSDrugFormServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSXdRpDtlServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSLocPatTypeServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSUsageServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSLocationServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSDoctorServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSRoomWindowServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSRoomServiceUnitTest.cs" />
+    <Compile Include="UnitTests\BS\BSFrequencyServiceUnitTest.cs" />
+    <Compile Include="UnitTests\Gbl\GblRoleServiceUnitTest.cs" />
+    <Compile Include="UnitTests\Gbl\GblSystemServiceUnitTest.cs" />
+    <Compile Include="UnitTests\Gbl\GblSettingServiceUnitTest.cs" />
+    <Compile Include="UnitTests\Gbl\GblSystemMenuServiceUnitTest.cs" />
+    <Compile Include="UnitTests\Gbl\GblSystemFunctionServiceUnitTest.cs" />
+    <Compile Include="UnitTests\Gbl\GblRoleModuleServiceUnitTest.cs" />
+    <Compile Include="UnitTests\Gbl\GblModuleServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INChinRicipeDtlServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INAdviceTempServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INPatFeesListServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INExecuteServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INAdviceGroupServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INDrugReqdtlServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INInvoiceDtlDumpServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INInvoiceServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INAdviceAuthDtlServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INInvoiceDtlServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INChinRicipExecServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INDrugReqBackServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INChinRicipeServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INAdviceWeekDayServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INHosInfoServiceUnitTest.cs" />
+    <Compile Include="UnitTests\IN\INAdviceLongServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OP\PSExecuteServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OP\OPApplyReportServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OU\OUHosInfoServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OU\OUInvoiceServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OU\OUlInvoiceRegServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OU\OURecipeServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OU\OUInvoiceDtlServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OU\OURecipeDtlServiceUnitTest.cs" />
+    <Compile Include="UnitTests\OU\OUClincDiagServiceUnitTest.cs" />
+    <Compile Include="UnitTests\RM\RMZyOutDtlServiceUnitTest.cs" />
+    <Compile Include="UnitTests\RM\RMZyOutServiceUnitTest.cs" />
+    <Compile Include="UnitTests\RM\RMStoreServiceUnitTest.cs" />
+    <Compile Include="UnitTests\TestBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\log4net.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xy.His.Contract\XY.His.Contract.csproj">
+      <Project>{445a7abd-9bfd-4bb0-a92a-e790b9aa7f09}</Project>
+      <Name>XY.His.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xy.His.Proxy\XY.His.Client.csproj">
+      <Project>{df186572-37b9-45f9-bb9a-0fea5151b322}</Project>
+      <Name>XY.His.Client</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
