@@ -16,7 +16,7 @@ namespace XY.His.Service.UnitTests.BS
 
         [Fact]
         public void GetByItemId_TestMethod()
-        {            
+        {
             int ID = 188;
             var getByIdRequest = BuildRequest("GetByItemId", new object[] { ID });
 

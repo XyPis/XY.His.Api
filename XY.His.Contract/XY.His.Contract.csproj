@@ -205,7 +205,6 @@
     <Compile Include="Service\OP\IPSApplyReportService.cs" />
     <Compile Include="Service\OU\IOUlInvoiceRegService.cs" />
     <Compile Include="Service\OU\IOUClincDiagService.cs" />
-    <Compile Include="Service\OU\IOUInvoiceRegService.cs" />
     <Compile Include="Service\OU\IOUInvoiceDtlService.cs" />
     <Compile Include="Service\OU\IOURecipeDtlService.cs" />
     <Compile Include="Service\OU\IOUInvoiceService.cs" />

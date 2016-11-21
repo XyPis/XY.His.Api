@@ -15,6 +15,7 @@ using XY.His.Contract.Service;
 using XY.His.Utils.Unity;
 using XY.His.Domain;
 using XY.His.Contract;
+using Serialize.Linq.Nodes;
 
 namespace XY.His.Service
 {
@@ -89,7 +90,7 @@ namespace XY.His.Service
 
             int pid = dto.ID;
             
-            this.Delete1(x => x.ID == pid);
+            this.Delete(x => x.ID == pid);
         }
 
         public virtual void DeleteById(object key)
@@ -261,10 +262,38 @@ namespace XY.His.Service
             }
         }        
 
+        public virtual IEnumerable<TDTO> Get(ExpressionNode query)
+        {         
+            var dtoExpression = query.ToBooleanExpression<TDTO>();
+            var entityExpression = Mapper.Map<Expression<Func<TEntity, bool>>>(dtoExpression);
+
+            using (var command = CommandWrapper)
+            {
+                return command.Execute(uow =>
+                {
+                    return uow.Get<TEntity>(entityExpression).MapTo<TDTO>();
+                });
+            }
+        }
+
+        public virtual int Delete(ExpressionNode query)
+        {
+            var dtoExpression = query.ToBooleanExpression<TDTO>();
+            var entityExpression = Mapper.Map<Expression<Func<TEntity, bool>>>(dtoExpression);
+
+            using (var command = CommandWrapper)
+            {
+                return command.Execute(uow =>
+                {
+                    return uow.Delete<TEntity>(entityExpression);
+                });
+            }
+        }
+
         public virtual IEnumerable<TDTO> Get(Expression<Func<TDTO, bool>> predicate)
         {
             var expression = Mapper.Map<Expression<Func<TEntity, bool>>>(predicate);
-            
+
             using (var command = CommandWrapper)
             {
                 return command.Execute(uow =>
@@ -272,9 +301,9 @@ namespace XY.His.Service
                     return uow.Get<TEntity>(expression).MapTo<TDTO>();
                 });
             }
-        }
+        }        
 
-        public virtual int Delete1(Expression<Func<TDTO, bool>> expression)
+        public virtual int Delete(Expression<Func<TDTO, bool>> expression)
         {
             var predicate = Mapper.Map<Expression<Func<TEntity, bool>>>(expression);
 

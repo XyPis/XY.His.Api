@@ -52,3 +52,10 @@ D:\SVN\XY.His.Api\XY.His.Service.UnitTests\obj\Debug\XY.His.Service.UnitTests.cs
 D:\SVN\XY.His.Api\XY.His.Service.UnitTests\obj\Debug\XY.His.Service.UnitTests.dll
 D:\SVN\XY.His.Api\XY.His.Service.UnitTests\obj\Debug\XY.His.Service.UnitTests.pdb
 D:\SVN\XY.His.Api\XY.His.Service.UnitTests\obj\Debug\XY.His.Service.UnitTests.csproj.App.config
+D:\Git\XY.His.Api\release\XY.His.Service.UnitTests.dll.config
+D:\Git\XY.His.Api\release\XY.His.Service.UnitTests.dll
+D:\Git\XY.His.Api\release\XY.His.Service.UnitTests.pdb
+D:\Git\XY.His.Api\XY.His.Service.UnitTests\obj\Debug\XY.His.Service.UnitTests.csproj.App.config
+D:\Git\XY.His.Api\XY.His.Service.UnitTests\obj\Debug\XY.His.Service.UnitTests.csprojResolveAssemblyReference.cache
+D:\Git\XY.His.Api\XY.His.Service.UnitTests\obj\Debug\XY.His.Service.UnitTests.dll
+D:\Git\XY.His.Api\XY.His.Service.UnitTests\obj\Debug\XY.His.Service.UnitTests.pdb

@@ -161,7 +161,6 @@
     <Compile Include="Service\OU\OUlInvoiceRegService.cs" />
     <Compile Include="Service\OU\OUClincDiagService.cs" />
     <Compile Include="Service\OU\OUInvoiceDtlService.cs" />
-    <Compile Include="Service\OU\OUInvoiceRegService.cs" />
     <Compile Include="Service\OU\OURecipeDtlService.cs" />
     <Compile Include="Service\OU\OURecipeService.cs" />
     <Compile Include="Service\OU\OUInvoiceService.cs" />

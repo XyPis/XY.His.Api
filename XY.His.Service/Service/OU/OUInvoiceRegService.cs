@@ -18,5 +18,17 @@ namespace XY.His.Service.OU
 {
     public class OUInvoiceRegService : AbstractService<OulInvoiceReg, OulInvoiceRegDto>, IOUInvoiceRegService
     {
+        public IEnumerable<OulInvoiceRegDto> GetByMzRegId(int mzRegId)
+        {
+            using (var command = CommandWrapper)
+            {
+                return command.Execute(uow =>
+                {
+                    var query = uow.Get<OulInvoiceReg>(x => x.MzRegId == mzRegId);
+
+                    return query.MapTo<OulInvoiceRegDto>();
+                });
+            }      
+        }
     }
 }

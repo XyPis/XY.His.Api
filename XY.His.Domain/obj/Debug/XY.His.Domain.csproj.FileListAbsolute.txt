@@ -10,3 +10,9 @@ D:\SVN\XY.His.Api\release\XY.His.Domain.pdb
 D:\SVN\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.csprojResolveAssemblyReference.cache
 D:\SVN\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.dll
 D:\SVN\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.pdb
+D:\Git\XY.His.Api\release\XY.His.Domain.dll.config
+D:\Git\XY.His.Api\release\XY.His.Domain.dll
+D:\Git\XY.His.Api\release\XY.His.Domain.pdb
+D:\Git\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.csprojResolveAssemblyReference.cache
+D:\Git\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.dll
+D:\Git\XY.His.Api\Xy.His.Domain\obj\Debug\XY.His.Domain.pdb

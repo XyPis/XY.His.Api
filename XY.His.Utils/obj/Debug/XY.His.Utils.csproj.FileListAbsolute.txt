@@ -11,3 +11,10 @@ D:\SVN\XY.His.Api\release\XY.His.Utils.pdb
 D:\SVN\XY.His.Api\Xy.His.Utils\obj\Debug\XY.His.Utils.csproj.App.config
 D:\SVN\XY.His.Api\Xy.His.Utils\obj\Debug\XY.His.Utils.dll
 D:\SVN\XY.His.Api\Xy.His.Utils\obj\Debug\XY.His.Utils.pdb
+D:\Git\XY.His.Api\release\XY.His.Utils.dll.config
+D:\Git\XY.His.Api\release\XY.His.Utils.dll
+D:\Git\XY.His.Api\release\XY.His.Utils.pdb
+D:\Git\XY.His.Api\Xy.His.Utils\obj\Debug\XY.His.Utils.csproj.App.config
+D:\Git\XY.His.Api\Xy.His.Utils\obj\Debug\XY.His.Utils.dll
+D:\Git\XY.His.Api\Xy.His.Utils\obj\Debug\XY.His.Utils.pdb
+D:\Git\XY.His.Api\Xy.His.Utils\obj\Debug\XY.His.Utils.csprojResolveAssemblyReference.cache

@@ -51,22 +51,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2016 11:42:05</publishTime>
     </File>
     <File Include="bin/XY.His.Contract.dll">
-      <publishTime>11/18/2016 16:51:42</publishTime>
+      <publishTime>11/21/2016 10:28:30</publishTime>
     </File>
     <File Include="bin/XY.His.Core.dll">
       <publishTime>11/18/2016 12:44:45</publishTime>
     </File>
     <File Include="bin/XY.His.Domain.dll">
-      <publishTime>11/18/2016 16:51:45</publishTime>
+      <publishTime>11/21/2016 10:28:31</publishTime>
     </File>
     <File Include="bin/XY.His.Service.dll">
-      <publishTime>11/18/2016 16:51:46</publishTime>
+      <publishTime>11/21/2016 10:38:48</publishTime>
     </File>
     <File Include="bin/XY.His.Utils.dll">
       <publishTime>11/17/2016 10:12:38</publishTime>
     </File>
     <File Include="bin/XY.His.Wcf.dll">
-      <publishTime>11/18/2016 16:51:47</publishTime>
+      <publishTime>11/21/2016 10:38:49</publishTime>
     </File>
     <File Include="bin/Z.EntityFramework.Extensions.dll">
       <publishTime>11/04/2016 11:42:46</publishTime>
@@ -87,7 +87,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/14/2016 15:30:02</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/15/2016 10:23:54</publishTime>
+      <publishTime>11/21/2016 10:18:07</publishTime>
     </File>
   </ItemGroup>
 </Project>

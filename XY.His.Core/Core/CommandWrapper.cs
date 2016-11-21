@@ -59,7 +59,7 @@ namespace XY.His.Core
             if (action == null)
             {
                 throw new ArgumentException("Action can not be null", "action");
-            }                            
+            }
 
             using (var uow = this.UnitOfWork)
             {
@@ -80,7 +80,7 @@ namespace XY.His.Core
                     default:
                         result = this.DoCommand(action, uow);
                         break;
-                }        
+                }
             }
 
             return result;
@@ -109,7 +109,7 @@ namespace XY.His.Core
         private void DoCommand(Action<IUnitOfWork> action, IUnitOfWork uow)
         {
             action(uow);
-            uow.SaveChanges();            
+            uow.SaveChanges();
         }
 
         private void DoDbCommand(Action<IUnitOfWork> action, IUnitOfWork uow)
@@ -128,15 +128,15 @@ namespace XY.His.Core
                     if (tx != null)
                     {
                         tx.Rollback();
-                    }                        
+                    }
 
                     throw;
-                }                
+                }
             }
         }
 
         private void DoMsdtcCommand(Action<IUnitOfWork> action, IUnitOfWork uow)
-        {            
+        {
             using (var tx = new TransactionScope())
             {
                 try
@@ -147,12 +147,12 @@ namespace XY.His.Core
                 catch
                 {
                     throw;
-                }                
-            }            
+                }
+            }
         }
 
         private TResult DoCommand<TResult>(Func<IUnitOfWork, TResult> action, IUnitOfWork uow)
-        {            
+        {
             TResult result = default(TResult);
 
             try
@@ -187,11 +187,11 @@ namespace XY.His.Core
                     {
                         tx.Rollback();
                     }
-                        
+
                     throw;
-                }                                
+                }
             }
-             
+
             return result;
         }
 
@@ -209,8 +209,8 @@ namespace XY.His.Core
                 catch
                 {
                     throw;
-                }                    
-            }            
+                }
+            }
 
             return result;
         }
