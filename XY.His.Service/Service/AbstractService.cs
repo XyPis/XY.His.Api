@@ -276,7 +276,7 @@ namespace XY.His.Service
             }
         }
 
-        public virtual int Delete(ExpressionNode query)
+        public virtual int DeleteBy(ExpressionNode query)
         {
             var dtoExpression = query.ToBooleanExpression<TDTO>();
             var entityExpression = Mapper.Map<Expression<Func<TEntity, bool>>>(dtoExpression);

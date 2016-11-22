@@ -9,6 +9,7 @@ using log4net;
 using Microsoft.Practices.Unity;
 using System.ServiceModel.Activation;
 using System.Web.Routing;
+using System.Web.Hosting;
 using XY.His.Service;
 
 namespace XY.His.Wcf
@@ -17,6 +18,7 @@ namespace XY.His.Wcf
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            HostingEnvironment.RegisterVirtualPathProvider(new ServicePathProvider());
             Initializer.Init();
         }
 

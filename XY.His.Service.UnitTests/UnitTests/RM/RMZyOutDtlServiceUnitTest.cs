@@ -1,25 +1,20 @@
 ﻿using System;
 using Xunit;
-using XY.His.Contract.Message;
 using XY.His.Client;
+using XY.His.Contract.Message;
 using XY.His.Contract.Message.RM;
+using XY.His.Contract.Service.RM;
 
 namespace XY.His.Service.UnitTests.RM
 {    
     public class RMZyOutDtlServiceUnitTest : TestBase
     {
-        public RMZyOutDtlServiceUnitTest()
-        {
-            ClassName = "XY.His.Service.RM.RMZyOutDtlService";
-        }
-
         [Fact]
         public void GetById_TestMethod()
         {            
-            int ID = 7622; 
-            var getByIdRequest = BuildRequest("GetById", new object[] { ID });
+            int ID = 7622;
 
-            var getByIdResponse = ServiceWrapper.ProcessRequest(getByIdRequest);
+            var getByIdResponse = ServiceProxy.CallService<IRMZyOutService, RmZyOutDto>(x => x.GetById(ID));
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
 
             if (getByIdResponse.Result != null)

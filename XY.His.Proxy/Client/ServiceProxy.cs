@@ -20,74 +20,26 @@ using Serialize.Linq.Factories;
 
 namespace XY.His.Client
 {
-    public class ServiceWrapper
+    public class ServiceProxy
     {
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        //public static Response Invoke<T>(Expression<Action<T>> action)
-        //    where T : IServiceBase
-        //{
-            
-        //    T proxy = GetProxy<XY.His.Contract.IServiceProvider>();
-        //    var expression = action.Body as MethodCallExpression;
-        //    string methodName = string.Empty;
-        //    if (expression != null)
-        //    {
-        //        methodName = expression.Method.Name;
-        //    }
+        public static Response CallService<T>(Action<T> action)
+            where T : IServiceBase
+        {
 
-        //    var expression1 = action.Body as UnaryExpression;
-        //    object[] inputParam = new object[expression.Arguments.Count];
-        //    int i = 0;
-        //    foreach (var arg in expression.Arguments)
-        //    {
-        //        var ue = arg as UnaryExpression;
-        //        inputParam[i++] = (ue.Operand as ConstantExpression).Value;
-        //    }
- 
-        //    Request request = new Request()
-        //    {
-        //        AssemblyName = "XY.His.Service",
-        //        ClassName = "XY.His.Service.BS.UserService",
-        //        MethodName = methodName,
-        //        InputParam = inputParam
-        //    };
+            T serviceProxy = GetProxy<T>();
 
-        //    return Invoke(proxy, request);        
-        //}
+            return ProcessRequest(serviceProxy, action);
+        }
 
-        //public static Response Invoke<T, TResult>(Expression<Func<T, TResult>> func)
-        //    where T : IServiceBase
-        //{      
-        //    T proxy = GetProxy<XY.His.Contract.IServiceProvider>();
+        public static Response CallService<T, TResult>(Func<T, TResult> func)
+            where T : IServiceBase
+        {
+            T serviceProxy = InvokeContext.CreateWCFServiceByURL<T>(); //GetProxy<T>();
 
-        //    //var expressionNode = func.ToExpressionNode();
-
-        //    var expression = func.Body as MethodCallExpression;
-        //    string methodName = string.Empty;
-        //    if (expression != null)
-        //    {
-        //        methodName = expression.Method.Name;
-        //    }
-            
- 
-        //    object[] inputParam = new object[expression.Arguments.Count];
-        //    int i = 0;
-        //    foreach(var arg in expression.Arguments)
-        //    {
-        //        var ue = arg as UnaryExpression;
-        //        inputParam[i++] = (ue.Operand as ConstantExpression).Value;
-        //    }
-        //    var memberExpression = func.Body as MemberExpression;
-        //    Request request = new Request() 
-        //    {
-        //        AssemblyName = "XY.His.Service",
-        //        ClassName = "XY.His.Service.BS.ItemService",
-        //        MethodName = methodName,
-        //        InputParam = inputParam
-        //    };
-        //    return Invoke(proxy, request);
-        //}
+            return ProcessRequest(serviceProxy, func);
+        }
 
         //public static Response Invoke<T, TResult>(Expression<Func<T, TResult>> func)
         //    where T : IServiceBase
@@ -127,10 +79,10 @@ namespace XY.His.Client
             {
                 //获取代理实例
                 XY.His.Contract.IServiceProvider serviceProvider = GetProxy<XY.His.Contract.IServiceProvider>();
-
+                
                 //序列化参数
                 byte[] inputParam = Serializer.SerializeBinary(request.InputParam);
-
+                                
                 //调用服务
                 Response response = serviceProvider.Invoke(request.AssemblyName, request.ClassName, request.MethodName, inputParam);
                 if (response.Status == ResponseStatus.OK)

@@ -2,29 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Xunit;
-using XY.His.Contract.Message;
-using XY.His.Client;
-using XY.His.Contract.Message.OU;
 using Serialize.Linq.Nodes;
 using Serialize.Linq.Extensions;
+using Xunit;
+using XY.His.Client;
+using XY.His.Contract.Message;
+using XY.His.Contract.Message.OU;
+using XY.His.Contract.Service.OU;
 
 namespace XY.His.Service.UnitTests.OU
 {
     public class OUlInvoiceRegServiceUnitTest : TestBase
     {
-        public OUlInvoiceRegServiceUnitTest()
-        {
-            ClassName = "XY.His.Service.OU.OUlInvoiceRegService";
-        }
-
         [Fact]
         public void GetById_TestMethod()
         {
             int ID = 24519;
-            var getByIdRequest = BuildRequest("GetById", new object[] { ID });
-
-            var getByIdResponse = ServiceWrapper.ProcessRequest(getByIdRequest);
+            
+            var getByIdResponse = ServiceProxy.CallService<IOUlInvoiceRegService, OulInvoiceRegDto>(x => x.GetById(ID));
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
 
             if (getByIdResponse.Result != null)
@@ -39,11 +34,9 @@ namespace XY.His.Service.UnitTests.OU
         {
             int mzRegId = 12963;
             Expression<Func<OulInvoiceRegDto, bool>> query = (x => x.MzRegId == mzRegId);
-            Serialize.Linq.Nodes.ExpressionNode expressionNode = query.ToExpressionNode();
-
-            var getByIdRequest = BuildRequest("Get", new object[] { expressionNode });
-
-            var getByIdResponse = ServiceWrapper.ProcessRequest(getByIdRequest);
+            ExpressionNode expressionNode = query.ToExpressionNode();
+            
+            var getByIdResponse = ServiceProxy.CallService<IOUlInvoiceRegService, IEnumerable<OulInvoiceRegDto>>(x => x.Get(expressionNode));
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
 
             if (getByIdResponse.Result != null)
@@ -58,11 +51,9 @@ namespace XY.His.Service.UnitTests.OU
         {
             int mzRegId = 12963;
             Expression<Func<OulInvoiceRegDto, bool>> query = (x => x.MzRegId == mzRegId);
-            Serialize.Linq.Nodes.ExpressionNode expressionNode = query.ToExpressionNode();
+            ExpressionNode expressionNode = query.ToExpressionNode();
 
-            var getByIdRequest = BuildRequest("Delete", new object[] { expressionNode });
-
-            var getByIdResponse = ServiceWrapper.ProcessRequest(getByIdRequest);
+            var getByIdResponse = ServiceProxy.CallService<IOUlInvoiceRegService, int>(x => x.DeleteBy(expressionNode));
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
         }       
     }

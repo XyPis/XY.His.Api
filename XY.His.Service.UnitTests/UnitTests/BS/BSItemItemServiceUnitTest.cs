@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Xunit;
-using XY.His.Contract.Message;
+using Serialize.Linq.Extensions;
+using Serialize.Linq.Nodes;
 using XY.His.Client;
+using XY.His.Contract.Message;
 using XY.His.Contract.Message.BS;
+using XY.His.Contract.Service.BS;
 
 namespace XY.His.Service.UnitTests.BS
 {
     public class BSItemItemServiceUnitTest : TestBase
-    {        
-        public BSItemItemServiceUnitTest()
-        {
-            ClassName = "XY.His.Service.BS.BSItemItemService";
-        }
-
+    {
         [Fact]
-        public void GetByItemId_TestMethod()
+        public void GetByItemId1_TestMethod()
         {
-            int ID = 817200;
-            var getByIdRequest = BuildRequest("GetByItemId", new object[] { ID });
+            int itemID = 817200;
 
-            var getByIdResponse = ServiceWrapper.ProcessRequest(getByIdRequest);
+            Expression<Func<BsItemItemDto, bool>> query = (x => x.ItemId1 == itemID);
+            Func<IBSItemItemService, IEnumerable<BsItemItemDto>> expression = (x => x.Get(query.ToExpressionNode()));
+            var getByIdResponse = ServiceProxy.CallService<IBSItemItemService, IEnumerable<BsItemItemDto>>(expression);
+           
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
             
             if (getByIdResponse.Result != null)
