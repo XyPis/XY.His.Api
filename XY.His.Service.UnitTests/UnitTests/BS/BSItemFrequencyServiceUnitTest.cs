@@ -20,7 +20,7 @@ namespace XY.His.Service.UnitTests.BS
             Expression<Func<BsItemFrequencyDto, bool>> query = (x => x.ItemId == itemID);
             ExpressionNode expressionNode = query.ToExpressionNode();
             
-            var getByIdResponse = ServiceProxy.CallService<IBSItemFrequencyService, IEnumerable<BsItemFrequencyDto>>(x => x.Get(expressionNode));
+            var getByIdResponse = ServiceProxy.CallService<IBSItemFrequencyService, IEnumerable<BsItemFrequencyDto>>(x => x.GetBy(expressionNode));
 
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
             

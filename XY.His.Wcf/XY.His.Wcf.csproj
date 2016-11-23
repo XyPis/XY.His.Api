@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="DynamicHostFactory.cs" />
+    <Compile Include="ServiceConfig.cs" />
     <Compile Include="ServiceFile.cs" />
     <Compile Include="ServicePathProvider.cs" />
     <Compile Include="Global.asax.cs">

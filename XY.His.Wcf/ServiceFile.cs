@@ -18,9 +18,9 @@ namespace XY.His.Wcf
         {
             get
             {
-                return base.VirtualPath.Replace(Constants.ServicePathSeparator, string.Empty)
-                    .Replace(Constants.ServiceSuffix, string.Empty)
-                    .TrimStart(Constants.ServicePrefix.ToCharArray());                
+                return base.VirtualPath.Replace(ServiceConfig.ServicePathSeparator, string.Empty)
+                    .Replace(ServiceConfig.ServiceSuffix, string.Empty)
+                    .TrimStart(ServiceConfig.ServicePrefix.ToCharArray());                
             }
         }
 
@@ -34,9 +34,12 @@ namespace XY.His.Wcf
             var serviceDef = new MemoryStream();
             var defWriter = new StreamWriter(serviceDef);
 
-            // Write host definition
-            defWriter.Write("<%@ ServiceHost Language=\"C#\" Debug=\"true\" Service=\"" + this.GetService() + "\"  " +
-                            "Factory=\"XY.His.Wcf.DynamicHostFactory, XY.His.Wcf\" %>");
+            var serviceHostDef = string.Format(ServiceConfig.ServiceHostDefinition, ServiceConfig.ServiceHostDebug, this.GetService(), ServiceConfig.ServiceHostFactory);
+                            
+            //defWriter.Write("<%@ ServiceHost Language=\"C#\" Debug=\"true\" Service=\"" + this.GetService() + "\"  " +
+            //                "Factory=\"XY.His.Wcf.DynamicHostFactory, XY.His.Wcf\" %>");
+
+            defWriter.Write(serviceHostDef);
             defWriter.Flush();
 
             serviceDef.Position = 0;

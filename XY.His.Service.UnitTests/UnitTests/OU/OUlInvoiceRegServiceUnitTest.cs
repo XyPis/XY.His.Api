@@ -36,7 +36,7 @@ namespace XY.His.Service.UnitTests.OU
             Expression<Func<OulInvoiceRegDto, bool>> query = (x => x.MzRegId == mzRegId);
             ExpressionNode expressionNode = query.ToExpressionNode();
             
-            var getByIdResponse = ServiceProxy.CallService<IOUlInvoiceRegService, IEnumerable<OulInvoiceRegDto>>(x => x.Get(expressionNode));
+            var getByIdResponse = ServiceProxy.CallService<IOUlInvoiceRegService, IEnumerable<OulInvoiceRegDto>>(x => x.GetBy(expressionNode));
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
 
             if (getByIdResponse.Result != null)

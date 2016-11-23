@@ -51,22 +51,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2016 11:42:05</publishTime>
     </File>
     <File Include="bin/XY.His.Contract.dll">
-      <publishTime>11/22/2016 16:38:29</publishTime>
+      <publishTime>11/23/2016 10:49:36</publishTime>
     </File>
     <File Include="bin/XY.His.Core.dll">
       <publishTime>11/21/2016 15:48:43</publishTime>
     </File>
     <File Include="bin/XY.His.Domain.dll">
-      <publishTime>11/22/2016 16:38:30</publishTime>
+      <publishTime>11/23/2016 10:49:38</publishTime>
     </File>
     <File Include="bin/XY.His.Service.dll">
-      <publishTime>11/22/2016 16:38:31</publishTime>
+      <publishTime>11/23/2016 10:49:39</publishTime>
     </File>
     <File Include="bin/XY.His.Utils.dll">
       <publishTime>11/17/2016 10:12:38</publishTime>
     </File>
     <File Include="bin/XY.His.Wcf.dll">
-      <publishTime>11/22/2016 17:58:39</publishTime>
+      <publishTime>11/23/2016 14:20:50</publishTime>
     </File>
     <File Include="bin/Z.EntityFramework.Extensions.dll">
       <publishTime>11/04/2016 11:42:46</publishTime>

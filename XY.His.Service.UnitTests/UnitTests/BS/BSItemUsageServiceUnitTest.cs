@@ -18,7 +18,7 @@ namespace XY.His.Service.UnitTests.BS
         {
             int itemID = 825795;
             Expression<Func<BsItemUsageDto, bool>> query = (x => x.ItemId == itemID);
-            Func<IBSItemUsageService, IEnumerable<BsItemUsageDto>> expression = (x => x.Get(query.ToExpressionNode()));
+            Func<IBSItemUsageService, IEnumerable<BsItemUsageDto>> expression = (x => x.GetBy(query.ToExpressionNode()));
             var getByIdResponse = ServiceProxy.CallService<IBSItemUsageService, IEnumerable<BsItemUsageDto>>(expression);
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
             

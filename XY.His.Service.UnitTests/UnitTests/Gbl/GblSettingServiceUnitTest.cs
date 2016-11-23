@@ -12,7 +12,7 @@ namespace XY.His.Service.UnitTests.Gbl
         [Fact]
         public void GetById_TestMethod()
         {
-            int ID = 24519;
+            int ID = 15;
 
             var getByIdResponse = ServiceProxy.CallService<IGblSettingService, GblSettingDto>(x => x.GetById(ID));
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);

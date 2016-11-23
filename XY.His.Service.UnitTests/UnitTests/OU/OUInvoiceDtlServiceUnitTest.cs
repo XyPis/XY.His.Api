@@ -15,6 +15,7 @@ namespace XY.His.Service.UnitTests.OU
             int ID = 24519;
 
             var getByIdResponse = ServiceProxy.CallService<IOUInvoiceDtlService, OuInvoiceDtlDto>(x => x.GetById(ID));
+
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
 
             if (getByIdResponse.Result != null)

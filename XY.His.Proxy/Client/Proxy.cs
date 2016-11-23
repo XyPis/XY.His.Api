@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks; 
 using System.ServiceModel;
+using System.Text;
+using System.Web;
+using System.ServiceModel.Channels;
 using log4net;
 
 namespace XY.His.Client
@@ -11,6 +14,9 @@ namespace XY.His.Client
     public class Proxy
     {
         private const string EndPointName = "BasicHttpBinding_IServiceProvider";
+        private const long MaxReceivedMessageSize = 65535000;
+        private const int TimeOutMinutes = 10;
+        private const string Url = "http://localhost:8088/XY{0}.svc";
 
         protected string EndpointConfigurationName 
         {
@@ -35,7 +41,165 @@ namespace XY.His.Client
 
             return ChannelFactory.CreateChannel();
         }
+
+        public static T GetProxy<T>()
+        {
+            return GetProxy<T>(Url, BindingType.BasicHttpBinding);
+        }
+
+        public static T GetProxy<T>(string url, BindingType bindingType)
+        {
+            if (string.IsNullOrWhiteSpace(url)) 
+                throw new ArgumentNullException("Url can not be null or empty.");
+
+            string realServiceName = typeof(T).Name.Substring(1);
+            string uri = string.Format(Url, realServiceName);
+
+            EndpointAddress address = new EndpointAddress(uri);
+            Binding binding = CreateBinding(bindingType);
+            ChannelFactory<T> channelFactory = new ChannelFactory<T>(binding, address);
+            return channelFactory.CreateChannel();
+        }
+        
+        private static Binding CreateBinding(BindingType bindingType)
+        {
+            switch (bindingType)
+            {
+                case BindingType.BasicHttpBinding:
+                    return CreateBasicHttpBinding();                    
+
+                case BindingType.WSHttpBinding:
+                    return CreateWSHttpBinding();
+                    
+                case BindingType.NetTcpBinding:
+                    return CreateNetTcpBinding();
+
+                case BindingType.WebHttpBinding:
+                    return CreateWebHttpBinding();
+
+                case BindingType.NetPeerTcpBinding:
+                    return CreateNetPeerTcpBinding();
+
+                case BindingType.NetNamedPipeBinding:
+                    return CreateNetNamedPipeBinding();
+
+                case BindingType.WSDualHttpBinding:
+                    return CreateWSDualHttpBinding();
+
+                case BindingType.WSFederationHttpBinding:
+                    return CreateWSFederationHttpBinding();
+
+                default:
+                    return CreateBasicHttpBinding();
+            }
+        }
+
+        private static Binding CreateBasicHttpBinding() 
+        {
+            TimeSpan ts  = new TimeSpan(0, TimeOutMinutes, 0);
+
+            BasicHttpBinding basicHttpBinding = new BasicHttpBinding() 
+            {
+                MaxBufferSize  = Int32.MaxValue,
+                MaxBufferPoolSize = Int32.MaxValue,
+                MaxReceivedMessageSize = Int32.MaxValue,
+                ReaderQuotas = new System.Xml.XmlDictionaryReaderQuotas()
+                {
+                    MaxArrayLength = Int32.MaxValue,
+                    MaxBytesPerRead = Int32.MaxValue,
+                    MaxDepth = Int32.MaxValue,
+                    MaxNameTableCharCount = Int32.MaxValue,
+                    MaxStringContentLength = Int32.MaxValue,
+                },
+                CloseTimeout = ts,
+                OpenTimeout = ts,
+                ReceiveTimeout = ts,
+                SendTimeout = ts
+            };    
+
+            return basicHttpBinding;
+        }
+
+        private static Binding CreateNetNamedPipeBinding()
+        {
+            NetNamedPipeBinding netNamedPipeBinding = new NetNamedPipeBinding()
+            {
+                MaxReceivedMessageSize = MaxReceivedMessageSize
+            };
+
+            return netNamedPipeBinding;
+        }
+
+        private static Binding CreateNetPeerTcpBinding()
+        {
+            NetPeerTcpBinding netPeerTcpBinding = new NetPeerTcpBinding()
+            {
+                MaxReceivedMessageSize = MaxReceivedMessageSize
+            };
+
+            return netPeerTcpBinding;
+        }
+
+        private static Binding CreateNetTcpBinding()
+        {
+            NetTcpBinding netTcpBinding = new NetTcpBinding(SecurityMode.None) 
+            {
+                MaxReceivedMessageSize = MaxReceivedMessageSize
+            };
+
+            return netTcpBinding;
+        }
+
+        private static Binding CreateWSDualHttpBinding()
+        {
+            WSDualHttpBinding wsDualHttpBinding = new WSDualHttpBinding() 
+            {
+                MaxReceivedMessageSize = MaxReceivedMessageSize
+            };
+
+            return wsDualHttpBinding;
+        }
+
+        private static Binding CreateWebHttpBinding()
+        {
+            //WebHttpBinding ws = new WebHttpBinding();
+            //ws.MaxReceivedMessageSize = MaxReceivedMessageSize;
+            throw new NotImplementedException();
+        }
+
+        private static Binding CreateWSFederationHttpBinding()
+        {
+            WSFederationHttpBinding wsFederationHttpBinding = new WSFederationHttpBinding() 
+            {
+                MaxReceivedMessageSize = MaxReceivedMessageSize
+            };
+            
+            return wsFederationHttpBinding;
+        }
+
+        private static Binding CreateWSHttpBinding()
+        {
+            WSHttpBinding wsHttpBinding = new WSHttpBinding(SecurityMode.None)
+            {
+                MaxReceivedMessageSize = MaxReceivedMessageSize
+            };            
+            wsHttpBinding.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
+            wsHttpBinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Windows;
+            return wsHttpBinding;
+        }        
     }
+
+    public enum BindingType
+    {
+        BasicHttpBinding = 1,
+        WSHttpBinding = 2,
+        NetTcpBinding = 3,
+        WebHttpBinding = 4,
+        NetPeerTcpBinding = 5,
+        NetNamedPipeBinding = 6,
+        WSDualHttpBinding = 7,
+        WSFederationHttpBinding = 8
+    } 
 }
 
 

@@ -22,58 +22,25 @@ namespace XY.His.Client
 {
     public class ServiceProxy
     {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);               
 
         public static Response CallService<T>(Action<T> action)
             where T : IServiceBase
         {
-
             T serviceProxy = GetProxy<T>();
-
+            
             return ProcessRequest(serviceProxy, action);
         }
 
         public static Response CallService<T, TResult>(Func<T, TResult> func)
             where T : IServiceBase
         {
-            T serviceProxy = InvokeContext.CreateWCFServiceByURL<T>(); //GetProxy<T>();
+            T serviceProxy = GetProxy<T>();
 
             return ProcessRequest(serviceProxy, func);
         }
-
-        //public static Response Invoke<T, TResult>(Expression<Func<T, TResult>> func)
-        //    where T : IServiceBase
-        //{
-        //    var proxy = GetProxy<XY.His.Contract.IServiceProvider>();
-
-        //    var expression = func.Body as MethodCallExpression;
-        //    string methodName = string.Empty;
-        //    if (expression != null)
-        //    {
-        //        methodName = expression.Method.Name;
-        //    }
-
-        //    object[] inputParam = new object[expression.Arguments.Count];
-        //    int i = 0;
-        //    foreach (var arg in expression.Arguments)
-        //    {
-        //        var ue = arg as UnaryExpression;
-        //        inputParam[i++] = (ue.Operand as ConstantExpression).Value;
-        //    }
-        //    var memberExpression = func.Body as MemberExpression;
-        //    Request request = new Request()
-        //    {
-        //        AssemblyName = "XY.His.Service",
-        //        ClassName = "XY.His.Service.BS.ItemService",
-        //        MethodName = methodName,
-        //        InputParam = inputParam
-        //    };
-            
-        //    return proxy.Invoke2<T, TResult>(func.ToExpressionNode());
-        //}
-
-
-        public static Response ProcessRequest(Request request)
+        
+        private static Response ProcessRequest(Request request)
         {
             try
             {
@@ -117,13 +84,12 @@ namespace XY.His.Client
             where T : IServiceBase
         {
             try
-            {
-                Proxy proxy = new Proxy();
-                return proxy.GetContract<T>();
+            {                
+                return Proxy.GetProxy<T>();
             }
             catch (Exception ex)
             {
-                Log.ErrorFormat("GetProxy<{0}> Exception: {1} \n{2}", typeof(T), GetErrMessage(ex, EnumExeptionType.Exception), ex.StackTrace);
+                Log.ErrorFormat("GetProxy<{0}> Exception: {1} \n{2}", typeof(T), GetErrMessage(ex, ExeptionType.Exception), ex.StackTrace);
                 throw;
             }
         }
@@ -145,15 +111,15 @@ namespace XY.His.Client
             }
             catch (System.ServiceModel.CommunicationException ce)
             {
-                response.Message = GetErrMessage(ce, EnumExeptionType.CommunicationException);
+                response.Message = GetErrMessage(ce, ExeptionType.CommunicationException);
             }
             catch (TimeoutException te)
             {
-                response.Message = GetErrMessage(te, EnumExeptionType.TimeoutException);
+                response.Message = GetErrMessage(te, ExeptionType.TimeoutException);
             }
             catch (Exception ex)
             {
-                response.Message = GetErrMessage(ex, EnumExeptionType.Exception);
+                response.Message = GetErrMessage(ex, ExeptionType.Exception);
             }
             finally
             {
@@ -192,15 +158,15 @@ namespace XY.His.Client
             }
             catch (System.ServiceModel.CommunicationException ce)
             {
-                response.Message = GetErrMessage(ce, EnumExeptionType.CommunicationException);
+                response.Message = GetErrMessage(ce, ExeptionType.CommunicationException);
             }
             catch (TimeoutException te)
             {
-                response.Message = GetErrMessage(te, EnumExeptionType.TimeoutException);
+                response.Message = GetErrMessage(te, ExeptionType.TimeoutException);
             }
             catch (Exception ex)
             {
-                response.Message = GetErrMessage(ex, EnumExeptionType.Exception);
+                response.Message = GetErrMessage(ex, ExeptionType.Exception);
             }
             finally
             {
@@ -221,7 +187,7 @@ namespace XY.His.Client
             return response;
         }
 
-        private static string GetErrMessage(Exception ex, EnumExeptionType exeptionType)
+        private static string GetErrMessage(Exception ex, ExeptionType exeptionType)
         {
             string errMessage = string.Empty;
             Exception innerException = ex.GetInnerException();
@@ -233,7 +199,7 @@ namespace XY.His.Client
             return errMessage;
         }
 
-        private enum EnumExeptionType
+        private enum ExeptionType
         {
             Exception = 0,
             TimeoutException = 1,

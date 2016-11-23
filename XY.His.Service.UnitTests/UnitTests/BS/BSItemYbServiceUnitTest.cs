@@ -20,7 +20,7 @@ namespace XY.His.Service.UnitTests.BS
 
             Expression<Func<BsItemYbDto, bool>> query = (x => x.ItemId == itemId);
             ExpressionNode expressionNode = query.ToExpressionNode();
-            var getByIdResponse = ServiceProxy.CallService<IBSItemYbService, IEnumerable<BsItemYbDto>>(x => x.Get(expressionNode));
+            var getByIdResponse = ServiceProxy.CallService<IBSItemYbService, IEnumerable<BsItemYbDto>>(x => x.GetBy(expressionNode));
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
             
             if (getByIdResponse.Result != null)

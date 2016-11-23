@@ -14,11 +14,24 @@ namespace XY.His.Wcf
         public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses)
         {            
             ServiceHost host = null;
-            var assembly = Assembly.Load(Constants.ServiceAssembly);
-            var type = assembly.GetTypes().Where(x => x.Name == constructorString).FirstOrDefault();
-            var serviceType = assembly.GetType(type.FullName);
+            string errMsg = string.Empty;
 
-            string contractName = string.Format("{0}{1}", Constants.ContractPrefix, serviceType.Name);
+            var types = ServiceConfig.ServiceTypes.Where(x => x.Key == constructorString);
+            if (types == null || types.Count() == 0)
+            {
+                errMsg = "No service was found in service config.";
+                throw new Exception(errMsg);
+            }
+
+            if (types.Count() > 1)
+            {
+                errMsg = string.Format("Duplicated service '{0}' was found in service config.", types.LastOrDefault().Key);
+                throw new Exception(errMsg);
+            }
+
+            var serviceType = types.FirstOrDefault().Value;
+
+            string contractName = string.Format("{0}{1}", ServiceConfig.ContractPrefix, serviceType.Name);
 
             var contract = serviceType.GetInterfaces()
                 .Where(x => x.Name == contractName)

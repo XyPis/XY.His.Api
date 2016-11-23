@@ -55,7 +55,7 @@ namespace XY.His.Contract.Service
         void BulkDelete(IEnumerable<TDTO> dtos);
 
         [OperationContract]
-        IEnumerable<TDTO> Get(ExpressionNode query);
+        IEnumerable<TDTO> GetBy(ExpressionNode query);
 
         [OperationContract]
         int DeleteBy(ExpressionNode query);

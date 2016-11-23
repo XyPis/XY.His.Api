@@ -262,7 +262,7 @@ namespace XY.His.Service
             }
         }        
 
-        public virtual IEnumerable<TDTO> Get(ExpressionNode query)
+        public virtual IEnumerable<TDTO> GetBy(ExpressionNode query)
         {         
             var dtoExpression = query.ToBooleanExpression<TDTO>();
             var entityExpression = Mapper.Map<Expression<Func<TEntity, bool>>>(dtoExpression);

@@ -35,6 +35,47 @@ namespace XY.His.Wcf
             });
 
             IoC.RegisterType<ICommandWrapper, CommandWrapper>();
+
+            InitServiceConfig();
+        }
+
+        private static void InitServiceConfig()
+        {
+            ServiceConfig.ServicePrefix = Constants.ServicePrefix;
+            ServiceConfig.ServiceSuffix = Constants.ServiceSuffix;
+            ServiceConfig.ServicePathSeparator = Constants.ServicePathSeparator;            
+            ServiceConfig.ContractPrefix = Constants.ContractPrefix;
+            ServiceConfig.ServiceAssembly = new List<string>() { Constants.ServiceAssembly };
+            ServiceConfig.ServiceHostDebug = Constants.ServiceHostDebug;
+            ServiceConfig.ServiceHostFactory = Constants.ServiceHostFactory;
+            ServiceConfig.ServiceHostDefinition = Constants.ServiceHostDefinition;
+            ServiceConfig.ServiceTypes = new Dictionary<string, Type>();
+
+            foreach (string assembly in ServiceConfig.ServiceAssembly)
+            {                
+                var serviceAssembly = Assembly.Load(assembly);
+                var types = serviceAssembly.GetTypes()
+                    .Where(x => x.IsClass)
+                    .Where(x => IsDerivedOfGenericType(x, typeof(XY.His.Service.AbstractService<,>)))
+                    .OrderBy(x => x.Name);
+
+                foreach (Type type in types)
+                {
+                    ServiceConfig.ServiceTypes.Add(type.Name, type);
+                }
+            }
+        }
+
+        static bool IsDerivedOfGenericType(Type type, Type genericType)
+        {
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == genericType)
+                return true;
+
+            if (type.BaseType != null)
+            {
+                return IsDerivedOfGenericType(type.BaseType, genericType);
+            }
+            return false;
         }
     }
 }

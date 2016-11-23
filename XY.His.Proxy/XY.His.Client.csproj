@@ -72,7 +72,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Client\InvokeContext.cs" />
     <Compile Include="Client\Proxy.cs" />
     <Compile Include="Client\ServiceProxy.cs">
       <SubType>Code</SubType>
