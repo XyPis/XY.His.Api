@@ -44,8 +44,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{91B971
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject2", "UnitTestProject2\UnitTestProject2.csproj", "{A927689E-B42B-428D-9AC6-5D31AC2F91CE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,10 +86,6 @@ Global
 		{3A7E808F-7A83-473F-881C-2CDF62913474}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A7E808F-7A83-473F-881C-2CDF62913474}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A7E808F-7A83-473F-881C-2CDF62913474}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A927689E-B42B-428D-9AC6-5D31AC2F91CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A927689E-B42B-428D-9AC6-5D31AC2F91CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A927689E-B42B-428D-9AC6-5D31AC2F91CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A927689E-B42B-428D-9AC6-5D31AC2F91CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,7 +100,6 @@ Global
 		{D99A2001-1DBB-4E9C-82E2-57B4EF2F514A} = {3F806537-3442-4770-BB22-E7EC8D93D76C}
 		{58088072-9A67-4748-9128-29CA43BE9458} = {178413E5-D9E7-4657-A221-09DB5A931B61}
 		{3A7E808F-7A83-473F-881C-2CDF62913474} = {9821907D-07B6-4978-AD9F-1DDC684081B3}
-		{A927689E-B42B-428D-9AC6-5D31AC2F91CE} = {178413E5-D9E7-4657-A221-09DB5A931B61}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35

@@ -80,16 +80,28 @@ namespace XY.His.Core
 
         public void SaveChanges(bool withDisposing = false)
         {
-            if (bulkFlag)
-                EFContext.BulkSaveChanges();
-            else
-                EFContext.SaveChanges();
-            
-            bulkFlag = false;
-
-            if (withDisposing)
+            try
             {
-                Dispose();
+                if (bulkFlag)
+                {
+                    EFContext.BulkSaveChanges();
+                    bulkFlag = false;
+                }
+                else
+                {
+                    EFContext.SaveChanges();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (withDisposing)
+                {
+                    Dispose();
+                }
             }
         }        
 

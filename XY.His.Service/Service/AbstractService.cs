@@ -9,6 +9,7 @@ using System.Data.Entity;
 using Microsoft.Practices.Unity;
 using log4net;
 using AutoMapper;
+using AutoMapper.Configuration;
 using AutoMapper.QueryableExtensions;
 using XY.His.Core;
 using XY.His.Contract.Service;
@@ -16,9 +17,12 @@ using XY.His.Utils.Unity;
 using XY.His.Domain;
 using XY.His.Contract;
 using Serialize.Linq.Nodes;
-
+using System.ServiceModel;
+ 
 namespace XY.His.Service
-{
+{        
+    [ErrorBehaviorAttribute(typeof(ErrorHandler))]
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public abstract class AbstractService<TEntity, TDTO> : Profile, IService<TDTO> 
         where TEntity: EntityBase, new()
         where TDTO : DtoBase, new()
@@ -31,10 +35,10 @@ namespace XY.His.Service
             get { return IoC.Resolve<ICommandWrapper>(); }
         }
 
+        [Obsolete]
         protected override void Configure()
         {
-            Mapper.CreateMap<TEntity, TDTO>();
-            Mapper.CreateMap<TDTO, TEntity>();
+            CreateMap<TEntity, TDTO>().ReverseMap();            
         }
 
         public virtual TDTO Add(TDTO dto)

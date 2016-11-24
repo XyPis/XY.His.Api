@@ -10,6 +10,7 @@ namespace XY.His.Service.UnitTests.BS
     public class BSDoctorServiceUnitTest : TestBase
     {
         [Fact]
+        [Trait("BS", "BSDoctorService")]
         public void GetById_TestMethod()
         {
             int ID = 188;

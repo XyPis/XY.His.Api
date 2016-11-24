@@ -148,3 +148,11 @@ Invalid column name 'InHosInfo_ID'.
    at System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
 2016-11-16 15:07:23,438 [1] DEBUG XY.His.Core.CommandWrapper.Execute [114] - ------------------------------------------------------------
+2016-11-24 09:32:10,467 [1] ERROR XY.His.Utils.Unity.IoC.Resolve [23] - Resolve Type XY.His.Core.ICommandWrapper Exception: Resolution of the dependency failed, type = "XY.His.Core.ICommandWrapper", name = "(none)".
+Exception occurred while: while resolving.
+Exception is: InvalidOperationException - The current type, XY.His.Core.ICommandWrapper, is an interface and cannot be constructed. Are you missing a type mapping?
+-----------------------------------------------
+At the time of the exception, the container was:
+
+  Resolving XY.His.Core.ICommandWrapper,(none)
+

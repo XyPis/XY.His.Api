@@ -6,7 +6,6 @@ using XY.His.Contract.Message.BS;
 namespace XY.His.Contract.Service.BS
 {
     public interface IBSItemDrugService : IService<BsItemDrugDto>
-    {
-        IEnumerable<BsItemDrugDto> GetByItemId(int itemId);
+    {        
     }
 }

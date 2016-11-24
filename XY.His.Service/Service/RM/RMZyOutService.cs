@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.Reflection;
 using System.Transactions;
 using System.Linq.Expressions;
-using System.Data.Objects.SqlClient;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using log4net;

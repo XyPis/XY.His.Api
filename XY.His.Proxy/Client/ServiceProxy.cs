@@ -22,7 +22,7 @@ namespace XY.His.Client
 {
     public class ServiceProxy
     {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);               
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public static Response CallService<T>(Action<T> action)
             where T : IServiceBase
@@ -109,6 +109,10 @@ namespace XY.His.Client
                 (proxy as IClientChannel).Close();
                 response.Status = ResponseStatus.OK;
             }
+            catch (System.ServiceModel.FaultException fe)
+            {
+                response.Message = GetErrMessage(fe, ExeptionType.FaultException);
+            }
             catch (System.ServiceModel.CommunicationException ce)
             {
                 response.Message = GetErrMessage(ce, ExeptionType.CommunicationException);
@@ -155,6 +159,10 @@ namespace XY.His.Client
                 response.Result = func(proxy);
                 (proxy as IClientChannel).Close();
                 response.Status = ResponseStatus.OK;
+            }
+            catch (FaultException<CommonFaultContract> fe)
+            {
+                response.Message = fe.Detail.Message; //GetErrMessage(fe, ExeptionType.FaultException);
             }
             catch (System.ServiceModel.CommunicationException ce)
             {
@@ -204,6 +212,7 @@ namespace XY.His.Client
             Exception = 0,
             TimeoutException = 1,
             CommunicationException = 2,
+            FaultException = 3,
         }
     }
 }

@@ -72,3 +72,30 @@ namespace XY.His.Service.UnitTests
   
   }  
 }
+
+    [DataContract]  
+public class ExceptionData  
+{  
+[DataMember]  
+public string Message;  
+}  
+[ServiceContract]  
+public interface IService  
+{  
+[OperationContract]  
+[FaultContract(typeof(ExceptionData))]  
+void Test();  
+}  
+public class Service : IService, IDisposable  
+{  
+public void Test()  
+{  
+ExceptionData d = new ExceptionData();  
+d.Message = "xxxxxx";  
+throw new FaultException<ExceptionData>(d, "abc");  
+}  
+public void Dispose()  
+{  
+Console.WriteLine("Dispose...");  
+}  
+} 

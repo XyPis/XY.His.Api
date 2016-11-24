@@ -7,6 +7,5 @@ namespace XY.His.Contract.Service.BS
 {
     public interface IBSItemYbService : IService<BsItemYbDto>
     {
-        IEnumerable<BsItemYbDto> GetByItemId(int itemId);
     }
 }

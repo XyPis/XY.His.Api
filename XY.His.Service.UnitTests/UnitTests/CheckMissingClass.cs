@@ -8,9 +8,9 @@ using XY.His.Contract.Message.BS;
 using XY.His.Service.BS;
 using XY.His.Service.UnitTests.BS;
 
-namespace UnitTestProject2
-{    
-    public class CheckAssembly
+namespace XY.His.Service.UnitTests
+{
+    public class CheckMissingClass
     {
         IList<string> missingDtos = new List<string>();
         IList<string> missingContracts = new List<string>();
@@ -18,14 +18,17 @@ namespace UnitTestProject2
         IList<string> missingUnitTests = new List<string>();
 
         [Fact]
-        public void TestMethod1()
+        [Trait("01 CheckMissingClass", "01 CheckMissingClass")]
+        public void Check()
         {
             Assembly entityAssembly = typeof(BsUser).Assembly;
             Assembly dtoAssembly = typeof(BsUserDto).Assembly;
             Assembly serviceAssembly = typeof(BSDoctorService).Assembly;
             Assembly unitTestsAssembly = typeof(BSDoctorServiceUnitTest).Assembly;
 
-            var types = entityAssembly.GetTypes().Where(t => t.IsSubclassOf(typeof(XY.His.Domain.EntityBase)));
+            var types = entityAssembly.GetTypes()
+                .Where(t => t.IsSubclassOf(typeof(XY.His.Domain.EntityBase)));
+
             foreach(Type type in types)
             {
                 string dtoType = string.Format("{0}Dto", type.Name);
@@ -37,23 +40,40 @@ namespace UnitTestProject2
                     .Where(x => x.IsSubclassOf(typeof(XY.His.Contract.DtoBase)))
                     .Where(x => x.Name.ToLower() == dtoType.ToLower()).ToList();
 
-                var contracts = dtoAssembly.GetTypes()
-                    //.Where(x => typeof(XY.His.Contract.Service.IService<>).IsAssignableFrom(x))
+                var contracts = dtoAssembly.GetTypes()                    
                     .Where(x => x.Name.ToLower() == contractType.ToLower()).ToList();
                  
-                var services = serviceAssembly.GetTypes()
-                    //.Where(x => x.IsSubclassOf(typeof(XY.His.Service.AbstractService<,>)))
+                var services = serviceAssembly.GetTypes()                    
                     .Where(x => x.Name.ToLower() == serviceType.ToLower()).ToList();
 
-                var unitTests = unitTestsAssembly.GetTypes()
-                    //.Where(x => x.IsSubclassOf(typeof(XY.His.Service.AbstractService<,>)))
+                var unitTests = unitTestsAssembly.GetTypes()                    
                     .Where(x => x.Name.ToLower() == unitTestType.ToLower()).ToList();
 
-                if (dtos.Count == 0) missingDtos.Add(dtoType);
-                if (contracts.Count == 0) missingContracts.Add(contractType);
-                if (services.Count == 0) missingServices.Add(serviceType);
-                if (unitTests.Count == 0) missingUnitTests.Add(unitTestType);
+                if (dtos.Count == 0) 
+                {
+                    missingDtos.Add(dtoType);
+                }
+
+                if (contracts.Count == 0)
+                {
+                    missingContracts.Add(contractType);
+                }
+
+                if (services.Count == 0)
+                {
+                    missingServices.Add(serviceType);
+                }
+
+                if (unitTests.Count == 0)
+                {
+                    missingUnitTests.Add(unitTestType);
+                }
             }
+
+            Assert.Equal(0, missingDtos.Count);
+            Assert.Equal(0, missingContracts.Count);
+            Assert.Equal(0, missingServices.Count);
+            Assert.Equal(0, missingUnitTests.Count);
         }
     }
 }

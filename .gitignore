@@ -274,3 +274,5 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 /.nuget
+/XY.His.Utils/bin/Release
+/XY.His.Utils/bin/Release

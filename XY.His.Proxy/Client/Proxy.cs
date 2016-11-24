@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks; 
 using System.ServiceModel;
-using System.Text;
 using System.Web;
 using System.ServiceModel.Channels;
 using log4net;
@@ -16,6 +15,7 @@ namespace XY.His.Client
         private const string EndPointName = "BasicHttpBinding_IServiceProvider";
         private const long MaxReceivedMessageSize = 65535000;
         private const int TimeOutMinutes = 10;
+        //private const string Url = "http://localhost:50410/XY{0}.svc";
         private const string Url = "http://localhost:8088/XY{0}.svc";
 
         protected string EndpointConfigurationName 
@@ -44,7 +44,7 @@ namespace XY.His.Client
 
         public static T GetProxy<T>()
         {
-            return GetProxy<T>(Url, BindingType.BasicHttpBinding);
+            return GetProxy<T>(Url, BindingType.NetTcpBinding);
         }
 
         public static T GetProxy<T>(string url, BindingType bindingType)
@@ -75,10 +75,7 @@ namespace XY.His.Client
                     return CreateNetTcpBinding();
 
                 case BindingType.WebHttpBinding:
-                    return CreateWebHttpBinding();
-
-                case BindingType.NetPeerTcpBinding:
-                    return CreateNetPeerTcpBinding();
+                    return CreateWebHttpBinding();               
 
                 case BindingType.NetNamedPipeBinding:
                     return CreateNetNamedPipeBinding();
@@ -128,17 +125,7 @@ namespace XY.His.Client
             };
 
             return netNamedPipeBinding;
-        }
-
-        private static Binding CreateNetPeerTcpBinding()
-        {
-            NetPeerTcpBinding netPeerTcpBinding = new NetPeerTcpBinding()
-            {
-                MaxReceivedMessageSize = MaxReceivedMessageSize
-            };
-
-            return netPeerTcpBinding;
-        }
+        }        
 
         private static Binding CreateNetTcpBinding()
         {
@@ -195,7 +182,7 @@ namespace XY.His.Client
         WSHttpBinding = 2,
         NetTcpBinding = 3,
         WebHttpBinding = 4,
-        NetPeerTcpBinding = 5,
+        //NetPeerTcpBinding = 5,
         NetNamedPipeBinding = 6,
         WSDualHttpBinding = 7,
         WSFederationHttpBinding = 8

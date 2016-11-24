@@ -22,19 +22,7 @@ namespace XY.His.Wcf
 
         public static void Init()
         {
-            Core.Initializer.Init<XyDbContext>(ConnectionString);
-
-            var fromAssembly = typeof(IGblSettingService).Assembly;
-            var toAssembly = typeof(GblSettingService).Assembly;
-
-            IoC.RegisterType(fromAssembly, toAssembly, new Type[] { });
-
-            AutoMapperBootStrapper.Initialize(new Assembly[]
-            {
-                typeof(GblSettingService).Assembly
-            });
-
-            IoC.RegisterType<ICommandWrapper, CommandWrapper>();
+            XY.His.Service.Initializer.Init(ConnectionString, new Type[] { });
 
             InitServiceConfig();
         }

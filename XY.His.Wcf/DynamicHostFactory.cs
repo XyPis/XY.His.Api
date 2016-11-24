@@ -46,13 +46,17 @@ namespace XY.His.Wcf
 
                 if (serviceAttribute != null)
                 {
-                    host.AddServiceEndpoint(contract, new BasicHttpBinding(), "");
+                    host.AddServiceEndpoint(contract, new NetTcpBinding(SecurityMode.None), "");
                 }
             }
-             
-            var metadata = new ServiceMetadataBehavior();
-            metadata.HttpGetEnabled = true;
-            host.Description.Behaviors.Add(metadata);
+
+            host.Description.Behaviors.Add(new ServiceMetadataBehavior()
+            {
+                HttpGetEnabled = true
+            });
+
+            //var serviceDebugBehavior = host.Description.Behaviors.Find<ServiceDebugBehavior>();
+            //serviceDebugBehavior.IncludeExceptionDetailInFaults = true;
 
             return host;
         }

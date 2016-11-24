@@ -6,7 +6,6 @@ using XY.His.Contract.Message.BS;
 namespace XY.His.Contract.Service.BS
 {
     public interface IBSItemIllTypeService : IService<BsItemIllTypeDto>
-    {
-        IEnumerable<BsItemIllTypeDto> GetByItemId(int itemId);
+    {       
     }
 }

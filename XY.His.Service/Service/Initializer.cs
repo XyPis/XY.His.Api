@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Microsoft.Practices.Unity;
 using log4net;
 using XY.His.Core;
 using XY.His.Utils.Unity;
@@ -21,15 +20,12 @@ namespace XY.His.Service
         {
             Core.Initializer.Init<XyDbContext>(connectionString);
 
-            var fromAssembly = typeof(IGblSettingService).Assembly;
-            var toAssembly = typeof(GblSettingService).Assembly;
-            
-            IoC.RegisterType(fromAssembly, toAssembly, excludeTypes);
+            var contractAssembly = typeof(XY.His.Contract.Service.IService<>).Assembly;
+            var serviceAssembly = typeof(XY.His.Service.AbstractService<,>).Assembly;
 
-            AutoMapperBootStrapper.Initialize(new Assembly[]
-            {
-                typeof(GblSettingService).Assembly
-            });
+            IoC.RegisterType(contractAssembly, serviceAssembly, excludeTypes);
+
+            AutoMapperHelper.Initialize(serviceAssembly);
 
             IoC.RegisterType<ICommandWrapper, CommandWrapper>();
         }

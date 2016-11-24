@@ -5,7 +5,6 @@ using System.Text;
 using XY.His.Common;
 using System.ServiceModel;
 using XY.His.Contract.Message;
-using Serialize.Linq.Nodes;
 using System.Linq.Expressions;
 
 namespace XY.His.Service

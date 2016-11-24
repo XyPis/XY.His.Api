@@ -17,9 +17,8 @@ namespace XY.His.Contract.Message
         public ResponseStatus Status { get; set; }
 
         public string Message { get; set; }
-        
-        public object Result { get; set; }
 
+        public object Result { get; set; }
     }
 
     public enum ResponseStatus

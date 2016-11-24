@@ -10,9 +10,10 @@ namespace XY.His.Service.UnitTests.BS
     public class BSDocLevelServiceUnitTest : TestBase
     {
         [Fact]
+        [Trait("BS", "BSDocLevelService")]
         public void GetById_TestMethod()
         {
-            int ID = 12;
+            int ID = 253;
 
             var getByIdResponse = ServiceProxy.CallService<IBSDocLevelService, BsDocLevelDto>(x => x.GetById(ID));
             Assert.True(getByIdResponse.Status == ResponseStatus.OK);
@@ -22,6 +23,6 @@ namespace XY.His.Service.UnitTests.BS
                 BsDocLevelDto dto = getByIdResponse.Result as BsDocLevelDto;
                 Assert.Equal(ID, dto.ID);
             }
-        }      
+        }
     }
 }

@@ -7,6 +7,5 @@ namespace XY.His.Contract.Service.BS
 {
     public interface IBSUnitRatioService : IService<BsUnitRatioDto>
     {
-        IEnumerable<BsUnitRatioDto> GetByItemId(int itemId);
     }
 }

@@ -9,34 +9,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AutoMapper.dll">
-      <publishTime>11/04/2016 11:41:40</publishTime>
+      <publishTime>11/24/2016 13:54:43</publishTime>
     </File>
     <File Include="bin/Config/log4net.config">
-      <publishTime>11/08/2016 09:57:07</publishTime>
+      <publishTime>11/24/2016 17:39:29</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>11/04/2016 11:41:00</publishTime>
     </File>
     <File Include="bin/EntityFramework.Extended.dll">
-      <publishTime>11/04/2016 11:42:40</publishTime>
+      <publishTime>11/23/2016 17:03:43</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>11/04/2016 11:41:00</publishTime>
     </File>
     <File Include="bin/log4net.dll">
-      <publishTime>11/04/2016 11:41:50</publishTime>
+      <publishTime>11/23/2016 15:58:32</publishTime>
     </File>
     <File Include="bin/Microsoft.Practices.ServiceLocation.dll">
-      <publishTime>11/04/2016 11:39:25</publishTime>
+      <publishTime>11/23/2016 15:55:54</publishTime>
     </File>
     <File Include="bin/Microsoft.Practices.Unity.Configuration.dll">
-      <publishTime>11/04/2016 11:41:07</publishTime>
+      <publishTime>11/23/2016 15:55:54</publishTime>
     </File>
     <File Include="bin/Microsoft.Practices.Unity.dll">
-      <publishTime>11/04/2016 11:41:07</publishTime>
+      <publishTime>11/23/2016 15:55:54</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.RegistrationByConvention.dll">
+      <publishTime>11/23/2016 15:55:54</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>11/04/2016 11:42:36</publishTime>
+      <publishTime>11/23/2016 15:51:42</publishTime>
     </File>
     <File Include="bin/Serialize.Linq.dll">
       <publishTime>11/15/2016 10:20:37</publishTime>
@@ -51,34 +54,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2016 11:42:05</publishTime>
     </File>
     <File Include="bin/XY.His.Contract.dll">
-      <publishTime>11/23/2016 10:49:36</publishTime>
+      <publishTime>11/24/2016 17:39:49</publishTime>
     </File>
     <File Include="bin/XY.His.Core.dll">
-      <publishTime>11/21/2016 15:48:43</publishTime>
+      <publishTime>11/24/2016 17:39:49</publishTime>
     </File>
     <File Include="bin/XY.His.Domain.dll">
-      <publishTime>11/23/2016 10:49:38</publishTime>
+      <publishTime>11/24/2016 17:39:50</publishTime>
     </File>
     <File Include="bin/XY.His.Service.dll">
-      <publishTime>11/23/2016 10:49:39</publishTime>
+      <publishTime>11/24/2016 17:39:51</publishTime>
     </File>
     <File Include="bin/XY.His.Utils.dll">
-      <publishTime>11/17/2016 10:12:38</publishTime>
+      <publishTime>11/24/2016 14:58:34</publishTime>
     </File>
     <File Include="bin/XY.His.Wcf.dll">
-      <publishTime>11/23/2016 14:20:50</publishTime>
+      <publishTime>11/24/2016 18:03:48</publishTime>
     </File>
     <File Include="bin/Z.EntityFramework.Extensions.dll">
-      <publishTime>11/04/2016 11:42:46</publishTime>
+      <publishTime>11/23/2016 16:08:00</publishTime>
     </File>
     <File Include="Config/log4net.config">
-      <publishTime>11/08/2016 09:57:07</publishTime>
+      <publishTime>11/24/2016 17:39:29</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>11/08/2016 13:56:23</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>11/14/2016 11:05:49</publishTime>
+      <publishTime>11/24/2016 14:10:48</publishTime>
     </File>
     <File Include="Service1.svc">
       <publishTime>11/14/2016 15:45:02</publishTime>
@@ -87,7 +90,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/14/2016 15:30:02</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/22/2016 11:52:09</publishTime>
+      <publishTime>11/24/2016 17:39:52</publishTime>
     </File>
   </ItemGroup>
 </Project>
