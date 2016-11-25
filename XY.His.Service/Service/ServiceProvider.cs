@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
-using XY.His.Common;
 using System.ServiceModel;
 using XY.His.Contract.Message;
-using System.Linq.Expressions;
+using XY.His.Utils;
 
 namespace XY.His.Service
 {

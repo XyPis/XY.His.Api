@@ -7,17 +7,16 @@ using System.ServiceModel;
 using System.Diagnostics;
 using System.Threading;
 using System.Web.Services.Protocols;
-using log4net;
 using XY.His.Contract.Service;
-using XY.His.Utils.Unity;
 using XY.His.Contract;
 using XY.His.Contract.Message;
-using XY.His.Common;
+using XY.His.Utils.Unity;
+using XY.His.Utils;
+using log4net;
 using Serialize.Linq.Extensions;
 using Serialize.Linq.Nodes;
 using Serialize.Linq.Serializers;
 using Serialize.Linq.Factories;
-
 namespace XY.His.Client
 {
     public class ServiceProxy
@@ -40,56 +39,52 @@ namespace XY.His.Client
             return ProcessRequest(serviceProxy, func);
         }
         
-        private static Response ProcessRequest(Request request)
-        {
-            try
-            {
-                //获取代理实例
-                XY.His.Contract.IServiceProvider serviceProvider = GetProxy<XY.His.Contract.IServiceProvider>();
-                
-                //序列化参数
-                byte[] inputParam = Serializer.SerializeBinary(request.InputParam);
-                                
-                //调用服务
-                Response response = serviceProvider.Invoke(request.AssemblyName, request.ClassName, request.MethodName, inputParam);
-                if (response.Status == ResponseStatus.OK)
-                {
-                    //反序列化结果
-                    object[] results = Serializer.DeserializeBinary((byte[])response.Result);
+        //private static Response ProcessRequest(Request request)
+        //{
+        //    try
+        //    {                
+        //        XY.His.Contract.IServiceProvider serviceProvider = GetProxy<XY.His.Contract.IServiceProvider>();
+                             
+        //        byte[] inputParam = Serializer.SerializeBinary(request.InputParam);
+                                                
+        //        Response response = serviceProvider.Invoke(request.AssemblyName, request.ClassName, request.MethodName, inputParam);
+        //        if (response.Status == ResponseStatus.OK)
+        //        {                    
+        //            object[] results = Serializer.DeserializeBinary((byte[])response.Result);
 
-                    //设置结果到响应
-                    response.Result = results[0];
-                }
+        //            //设置结果到响应
+        //            response.Result = results[0];
+        //        }
 
-                //返回服务处理响应
-                return response;
-            }
-            catch (SoapException soe)
-            {
-                //TODO:
-                return null;
-            }
-            catch (ThreadAbortException te)
-            {
-                //TODO:
-                return null;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(string.Format("Execute Error:\n  Assembly={0}\n  Method={1}.{2}\n  {3}", request.AssemblyName, request.ClassName, request.MethodName, ex.Message));
-            }
-        }
+        //        //返回服务处理响应
+        //        return response;
+        //    }
+        //    catch (SoapException soe)
+        //    {
+        //        //TODO:
+        //        return null;
+        //    }
+        //    catch (ThreadAbortException te)
+        //    {
+        //        //TODO:
+        //        return null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(string.Format("Execute Error:\n  Assembly={0}\n  Method={1}.{2}\n  {3}", request.AssemblyName, request.ClassName, request.MethodName, ex.Message));
+        //    }
+        //}
 
         private static T GetProxy<T>()
             where T : IServiceBase
         {
             try
-            {                
+            {
                 return Proxy.GetProxy<T>();
             }
             catch (Exception ex)
             {
-                Log.ErrorFormat("GetProxy<{0}> Exception: {1} \n{2}", typeof(T), GetErrMessage(ex, ExeptionType.Exception), ex.StackTrace);
+                Log.ErrorFormat("GetProxy<{0}> Exception: {1} \n{2}", typeof(T), GetErrMsg(ex), ex.StackTrace);
                 throw;
             }
         }
@@ -97,6 +92,8 @@ namespace XY.His.Client
         private static Response ProcessRequest<T>(T proxy, Action<T> action)
              where T : IServiceBase
         {
+            string errMsg = string.Empty;
+
             Response response = new Response() 
             {
                 Status = ResponseStatus.Error,
@@ -111,22 +108,23 @@ namespace XY.His.Client
             }
             catch (System.ServiceModel.FaultException fe)
             {
-                response.Message = GetErrMessage(fe, ExeptionType.FaultException);
+                errMsg = GetErrMsg(fe);
             }
             catch (System.ServiceModel.CommunicationException ce)
             {
-                response.Message = GetErrMessage(ce, ExeptionType.CommunicationException);
+                errMsg = GetErrMsg(ce);
             }
             catch (TimeoutException te)
             {
-                response.Message = GetErrMessage(te, ExeptionType.TimeoutException);
+                errMsg = GetErrMsg(te);
             }
             catch (Exception ex)
             {
-                response.Message = GetErrMessage(ex, ExeptionType.Exception);
+                errMsg = GetErrMsg(ex);
             }
             finally
             {
+                response.Message = errMsg;
                 if (response.Status == ResponseStatus.Error)
                 {
                     Log.Error(response.Message);
@@ -148,6 +146,8 @@ namespace XY.His.Client
         private static Response ProcessRequest<T, TResult>(T proxy, Func<T, TResult> func)
              where T : IServiceBase
         {
+            string errMsg = string.Empty;
+
             Response response = new Response() 
             {
                 Status = ResponseStatus.Error,
@@ -162,22 +162,24 @@ namespace XY.His.Client
             }
             catch (FaultException<CommonFaultContract> fe)
             {
-                response.Message = fe.Detail.Message; //GetErrMessage(fe, ExeptionType.FaultException);
+                errMsg = fe.Detail.Message;
             }
             catch (System.ServiceModel.CommunicationException ce)
             {
-                response.Message = GetErrMessage(ce, ExeptionType.CommunicationException);
+                errMsg = GetErrMsg(ce);
             }
             catch (TimeoutException te)
             {
-                response.Message = GetErrMessage(te, ExeptionType.TimeoutException);
+                errMsg = GetErrMsg(te);
             }
             catch (Exception ex)
             {
-                response.Message = GetErrMessage(ex, ExeptionType.Exception);
+                errMsg = GetErrMsg(ex);
             }
             finally
             {
+                response.Message = errMsg;
+
                 if (response.Status == ResponseStatus.Error)
                 {
                     Log.Error(response.Message);
@@ -195,24 +197,17 @@ namespace XY.His.Client
             return response;
         }
 
-        private static string GetErrMessage(Exception ex, ExeptionType exeptionType)
+        private static string GetErrMsg(Exception ex)
         {
-            string errMessage = string.Empty;
-            Exception innerException = ex.GetInnerException();
-            if (innerException != null)
+            while(ex.InnerException != null)
             {
-                errMessage = string.Format("{0}: {1} \n{2}", exeptionType.ToString(), innerException.Message, ex.StackTrace);
+                ex = ex.InnerException;
             }
+            
+            string errMsg = (ex == null) ? 
+                string.Empty : string.Format("{0} Error: {1} \n{2}", ex.GetType().Name, ex.Message, ex.StackTrace);
 
-            return errMessage;
-        }
-
-        private enum ExeptionType
-        {
-            Exception = 0,
-            TimeoutException = 1,
-            CommunicationException = 2,
-            FaultException = 3,
+            return errMsg;
         }
     }
 }

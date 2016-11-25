@@ -46,7 +46,7 @@ namespace XY.His.Wcf
 
                 if (serviceAttribute != null)
                 {
-                    host.AddServiceEndpoint(contract, new NetTcpBinding(SecurityMode.None), "");
+                    host.AddServiceEndpoint(contract, new BasicHttpsBinding(), contract.Name);
                 }
             }
 

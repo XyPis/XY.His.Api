@@ -25,7 +25,7 @@ namespace XY.His.Service
 
             IoC.RegisterType(contractAssembly, serviceAssembly, excludeTypes);
 
-            AutoMapperHelper.Initialize(serviceAssembly);
+            AutoMapperConfiguration.Initialize(serviceAssembly);
 
             IoC.RegisterType<ICommandWrapper, CommandWrapper>();
         }

@@ -105,7 +105,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
     <Compile Include="DynamicHostFactory.cs" />
     <Compile Include="ServiceConfig.cs" />
     <Compile Include="ServiceFile.cs" />

@@ -2,7 +2,7 @@ using System.Data;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace XY.His.Common
+namespace XY.His.Utils
 {
     public static class Serializer
     {

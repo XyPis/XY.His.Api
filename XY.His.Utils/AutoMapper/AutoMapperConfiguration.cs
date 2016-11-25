@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace XY.His.Utils.AutoMapper
 {
-    public sealed class AutoMapperHelper
+    public sealed class AutoMapperConfiguration
     {
         public static void Initialize(Assembly profileAssembly)
         {

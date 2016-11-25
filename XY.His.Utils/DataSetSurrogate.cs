@@ -5,7 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace XY.His.Common
+namespace XY.His.Utils
 {
     [Serializable]
     public class DataSetSurrogate

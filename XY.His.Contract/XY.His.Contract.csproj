@@ -49,9 +49,6 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Common\DataSetSurrogate.cs" />
-    <Compile Include="Common\InvokeHelper.cs" />
-    <Compile Include="Common\Serializer.cs" />
     <Compile Include="DtoBase.cs" />
     <Compile Include="IServiceProvider.cs" />
     <Compile Include="Message\BS\BsDocLevelDto.cs" />

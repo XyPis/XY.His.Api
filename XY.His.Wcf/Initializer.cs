@@ -24,22 +24,14 @@ namespace XY.His.Wcf
         {
             XY.His.Service.Initializer.Init(ConnectionString, new Type[] { });
 
-            InitServiceConfig();
+            InitizlizeServiceConfig();
         }
 
-        private static void InitServiceConfig()
+        private static void InitizlizeServiceConfig()
         {
-            ServiceConfig.ServicePrefix = Constants.ServicePrefix;
-            ServiceConfig.ServiceSuffix = Constants.ServiceSuffix;
-            ServiceConfig.ServicePathSeparator = Constants.ServicePathSeparator;            
-            ServiceConfig.ContractPrefix = Constants.ContractPrefix;
-            ServiceConfig.ServiceAssembly = new List<string>() { Constants.ServiceAssembly };
-            ServiceConfig.ServiceHostDebug = Constants.ServiceHostDebug;
-            ServiceConfig.ServiceHostFactory = Constants.ServiceHostFactory;
-            ServiceConfig.ServiceHostDefinition = Constants.ServiceHostDefinition;
             ServiceConfig.ServiceTypes = new Dictionary<string, Type>();
 
-            foreach (string assembly in ServiceConfig.ServiceAssembly)
+            foreach (string assembly in ServiceConfig.Assemblies)
             {                
                 var serviceAssembly = Assembly.Load(assembly);
                 var types = serviceAssembly.GetTypes()

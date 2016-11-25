@@ -18,7 +18,7 @@ namespace XY.His.Wcf
         private bool IsServiceCall(string virtualPath)
         {
             virtualPath = VirtualPathUtility.ToAppRelative(virtualPath);
-            return (virtualPath.ToUpper().StartsWith(string.Format("~/{0}", ServiceConfig.ServicePrefix)));
+            return (virtualPath.ToUpper().StartsWith(string.Format("~/{0}", ServiceConfig.Prefix)));
         }
 
         public override bool FileExists(string virtualPath)

@@ -44,7 +44,7 @@ namespace XY.His.Client
 
         public static T GetProxy<T>()
         {
-            return GetProxy<T>(Url, BindingType.NetTcpBinding);
+            return GetProxy<T>(Url, BindingType.BasicHttpBinding);
         }
 
         public static T GetProxy<T>(string url, BindingType bindingType)

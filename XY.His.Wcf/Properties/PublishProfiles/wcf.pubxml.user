@@ -69,7 +69,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/24/2016 14:58:34</publishTime>
     </File>
     <File Include="bin/XY.His.Wcf.dll">
-      <publishTime>11/24/2016 18:03:48</publishTime>
+      <publishTime>11/25/2016 10:23:07</publishTime>
     </File>
     <File Include="bin/Z.EntityFramework.Extensions.dll">
       <publishTime>11/23/2016 16:08:00</publishTime>
@@ -81,7 +81,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/08/2016 13:56:23</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>11/24/2016 14:10:48</publishTime>
+      <publishTime>11/25/2016 09:35:31</publishTime>
     </File>
     <File Include="Service1.svc">
       <publishTime>11/14/2016 15:45:02</publishTime>
@@ -90,7 +90,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/14/2016 15:30:02</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/24/2016 17:39:52</publishTime>
+      <publishTime>11/25/2016 09:45:55</publishTime>
     </File>
   </ItemGroup>
 </Project>

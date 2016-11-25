@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Collections.Generic;
 
-namespace XY.His.Common
+namespace XY.His.Utils
 {
     public static class InvokeHelper
     {

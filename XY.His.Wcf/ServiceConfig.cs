@@ -7,21 +7,53 @@ namespace XY.His.Wcf
 {
     public class ServiceConfig
     {
-        public static string ServicePrefix { get; set; }
+        private const string ServiceHostDefinition = "<%@ ServiceHost Language=\"C#\" Debug=\"{0}\" Service=\"{1}\" Factory=\"{2}\" %>";        
 
-        public static string ServiceSuffix { get; set; }
+        public static string Prefix 
+        {
+            get { return "XY"; }
+        }
 
-        public static string ServicePathSeparator { get; set; }
+        public static string Suffix 
+        {
+            get { return ".svc"; } 
+        }
 
-        public static string ContractPrefix { get; set; }
+        public static string PathSeparator 
+        {
+            get { return "/"; } 
+        }
 
-        public static IList<string> ServiceAssembly { get; set; }
+        public static string ContractPrefix 
+        {
+            get { return "I"; } 
+        }
 
-        public static bool ServiceHostDebug { get; set; }
+        public static IList<string> Assemblies 
+        {
+            get 
+            {                
+                var assemblies = new List<string>();
+                assemblies.Add("XY.His.Service");
 
-        public static string ServiceHostFactory { get; set; }
+                return assemblies;
+            }
+        }
 
-        public static string ServiceHostDefinition { get; set; }
+        public static bool ServiceDebug 
+        {
+            get { return true; }
+        }
+
+        public static string TypeOfHostFactory 
+        {
+            get { return "XY.His.Wcf.DynamicHostFactory, XY.His.Wcf"; }            
+        }
+
+        public static string ServiceHostDef 
+        {
+            get { return ServiceHostDefinition; } 
+        }
 
         public static IDictionary<string, Type> ServiceTypes { get; set; }
     }
