@@ -27,7 +27,7 @@ namespace XY.His.Service
 
             FaultException<CommonFaultContract> fex = new FaultException<CommonFaultContract>(cf);
             MessageFault mf = fex.CreateMessageFault();
-            fault = System.ServiceModel.Channels.Message.CreateMessage(version, mf, Constants.Action);
+            fault = System.ServiceModel.Channels.Message.CreateMessage(version, mf, string.Empty);
         }
 
         // HandleError. Log an error, then allow the error to be handled as usual.

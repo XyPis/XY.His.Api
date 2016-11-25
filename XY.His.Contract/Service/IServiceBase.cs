@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XY.His.Contract.Service
 {
-    public interface IServiceBase
+    public interface IServiceBase : IDisposable
     {
     }
 }

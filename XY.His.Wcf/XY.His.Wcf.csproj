@@ -105,6 +105,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="DynamicHostFactory.cs" />
     <Compile Include="ServiceConfig.cs" />
     <Compile Include="ServiceFile.cs" />
@@ -117,7 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\log4net.config">

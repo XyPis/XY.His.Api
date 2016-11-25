@@ -2,100 +2,80 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ServiceModel.Activation;
+using System.Reflection;
+using System.ServiceModel;
+using System.ServiceModel.Description;
+using System.ServiceModel.Channels;
 
-namespace XY.His.Service.UnitTests
+namespace XY.His.Wcf
 {
-    public static class ServiceConfig   
-    {   
-        public static Binding DefaultBinding   
-        {   
-            get   
-            {   
-                var binding = new BasicHttpBinding();   
-                Configure(binding);   
-                return binding;  
-            } 
-  
-        } 
-  
-  
-        public static void Configure(HttpBindingBase binding)  
+    public static class ServiceConfig1
+    {
+        public static Binding DefaultBinding
         {
-            if (binding == null)  
-            {  
-                throw new ArgumentException("Argument 'binding' cannot be null. Cannot configure binding.");  
+            get
+            {
+                var binding = new BasicHttpBinding();
+                Configure(binding);
+                return binding;
             }
-  
-  binding.SendTimeout = new TimeSpan(0, 0, 30, 0); // 30 minute timeout
-  binding.MaxBufferSize = Int32.MaxValue;
-  binding.MaxBufferPoolSize = 2147483647;
-  binding.MaxReceivedMessageSize = Int32.MaxValue;
-  binding.ReaderQuotas.MaxArrayLength = Int32.MaxValue;
-  binding.ReaderQuotas.MaxBytesPerRead = Int32.MaxValue;
-  binding.ReaderQuotas.MaxDepth = Int32.MaxValue;
-  binding.ReaderQuotas.MaxNameTableCharCount = Int32.MaxValue;
-  binding.ReaderQuotas.MaxStringContentLength = Int32.MaxValue;
-  }
-  
-  public static ServiceMetadataBehavior ServiceMetadataBehavior
-  {
-  get
-  {
-  return new ServiceMetadataBehavior
-  {
-  HttpGetEnabled = true, 
-  MetadataExporter = {PolicyVersion = PolicyVersion.Policy15}
-  };
-  }
-  }
-  
-  public static ServiceDebugBehavior ServiceDebugBehavior
-  {
-  get
-  {
-  var smb = new ServiceDebugBehavior();
-  Configure(smb);
-  return smb;
-  }
-  }
-  
-  
-  public static void Configure(ServiceDebugBehavior behavior)
-  {  
-      if (behavior == null)  
-      {  
-          throw new ArgumentException("Argument 'behavior' cannot be null. Cannot configure debug behavior.");  
-      }
-  
-  
-      behavior.IncludeExceptionDetailInFaults = true;
-  
-  }  
-}
 
-    [DataContract]  
-public class ExceptionData  
-{  
-[DataMember]  
-public string Message;  
-}  
-[ServiceContract]  
-public interface IService  
-{  
-[OperationContract]  
-[FaultContract(typeof(ExceptionData))]  
-void Test();  
-}  
-public class Service : IService, IDisposable  
-{  
-public void Test()  
-{  
-ExceptionData d = new ExceptionData();  
-d.Message = "xxxxxx";  
-throw new FaultException<ExceptionData>(d, "abc");  
-}  
-public void Dispose()  
-{  
-Console.WriteLine("Dispose...");  
-}  
-} 
+        }
+
+
+        public static void Configure(HttpBindingBase binding)
+        {
+            if (binding == null)
+            {
+                throw new ArgumentException("Argument 'binding' cannot be null. Cannot configure binding.");
+            }
+
+            binding.SendTimeout = new TimeSpan(0, 0, 30, 0); // 30 minute timeout
+            binding.MaxBufferSize = Int32.MaxValue;
+            binding.MaxBufferPoolSize = 2147483647;
+            binding.MaxReceivedMessageSize = Int32.MaxValue;
+            binding.ReaderQuotas.MaxArrayLength = Int32.MaxValue;
+            binding.ReaderQuotas.MaxBytesPerRead = Int32.MaxValue;
+            binding.ReaderQuotas.MaxDepth = Int32.MaxValue;
+            binding.ReaderQuotas.MaxNameTableCharCount = Int32.MaxValue;
+            binding.ReaderQuotas.MaxStringContentLength = Int32.MaxValue;
+        }
+
+        public static ServiceMetadataBehavior ServiceMetadataBehavior
+        {
+            get
+            {
+                return new ServiceMetadataBehavior
+                {
+                    HttpGetEnabled = true,
+                    MetadataExporter = { PolicyVersion = PolicyVersion.Policy15 }
+                };
+            }
+        }
+
+        public static ServiceDebugBehavior ServiceDebugBehavior
+        {
+            get
+            {
+                var smb = new ServiceDebugBehavior();
+                Configure(smb);
+                return smb;
+            }
+        }
+
+
+        public static void Configure(ServiceDebugBehavior behavior)
+        {
+            if (behavior == null)
+            {
+                throw new ArgumentException("Argument 'behavior' cannot be null. Cannot configure debug behavior.");
+            }
+
+
+            behavior.IncludeExceptionDetailInFaults = true;
+
+        }
+    }
+ 
+}

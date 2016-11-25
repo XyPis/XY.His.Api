@@ -11,6 +11,8 @@ namespace XY.His.Service
 {
     public class ServiceProvider : XY.His.Contract.IServiceProvider
     {
+        private bool disposed = false;
+
         public Response Invoke(string assemblyName, string className, string methodName, params byte[] inputParam)
         {
             Response response = new Response();
@@ -58,5 +60,23 @@ namespace XY.His.Service
 
         //    return response;
         //}
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                   //TODO:
+                }
+            }
+
+            this.disposed = true;
+        }
     }
 }

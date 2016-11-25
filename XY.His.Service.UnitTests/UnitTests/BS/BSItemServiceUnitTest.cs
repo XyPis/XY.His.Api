@@ -22,6 +22,6 @@ namespace XY.His.Service.UnitTests.BS
                 BsItemDto dto = getByIdResponse.Result as BsItemDto;
                 Assert.Equal(ID, dto.ID);
             }
-        }      
+        }
     }
 }

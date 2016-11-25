@@ -27,7 +27,8 @@ namespace XY.His.Service
         where TEntity: EntityBase, new()
         where TDTO : DtoBase, new()
     {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);        
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private bool disposed = false;
 
         [Dependency]
         public virtual ICommandWrapper CommandWrapper
@@ -337,5 +338,23 @@ namespace XY.His.Service
         //        });
         //    }
         //}
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    //TODO:
+                }
+            }
+
+            this.disposed = true;
+        }
     }
 }
