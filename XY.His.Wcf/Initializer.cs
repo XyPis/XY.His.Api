@@ -28,21 +28,18 @@ namespace XY.His.Wcf
         }
 
         private static void InitizlizeServiceConfig()
-        {
-            ServiceConfig.ServiceTypes = new Dictionary<string, Type>();
-
+        {            
             foreach (string assembly in ServiceConfig.Assemblies)
             {                
                 var serviceAssembly = Assembly.Load(assembly);
-                var types = serviceAssembly.GetTypes()
+
+                var types = serviceAssembly.GetTypes();
+
+                ServiceConfig.ServiceTypes = types
                     .Where(x => x.IsClass)
                     .Where(x => IsDerivedOfGenericType(x, typeof(XY.His.Service.AbstractService<,>)))
-                    .OrderBy(x => x.Name);
-
-                foreach (Type type in types)
-                {
-                    ServiceConfig.ServiceTypes.Add(type.Name, type);
-                }
+                    .OrderBy(x => x.Name)
+                    .ToArray();               
             }
         }
 

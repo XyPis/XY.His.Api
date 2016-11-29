@@ -55,6 +55,8 @@ namespace XY.His.Wcf
             get { return ServiceHostDefinition; } 
         }
 
-        public static IDictionary<string, Type> ServiceTypes { get; set; }
+        public static Type[] ServiceTypes { get; set; }
+
+        public static Type[] ContractTypes { get; set; }
     }
 }

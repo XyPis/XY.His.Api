@@ -60,10 +60,27 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Client\Binding\EnumBindingType.cs" />
+    <Compile Include="Client\Binding\WSDualHttpBindingContext.cs" />
+    <Compile Include="Client\Binding\WSFederationHttpBindingContext.cs" />
+    <Compile Include="Client\Binding\WSDualHttpBindingFactory.cs" />
+    <Compile Include="Client\Binding\WSFederationHttpBindingFactory.cs" />
+    <Compile Include="Client\Binding\WSHttpBindingFactory.cs" />
+    <Compile Include="Client\Binding\WebHttpBindingFactory.cs" />
+    <Compile Include="Client\Binding\NetNamedPipeBindingFactory.cs" />
+    <Compile Include="Client\Binding\NetTcpBindingFactory.cs" />
+    <Compile Include="Client\Binding\BasicHttpBindingFactory.cs" />
+    <Compile Include="Client\Binding\NetTcpBindingContext.cs" />
+    <Compile Include="Client\Binding\WebHttpBindingContext.cs" />
+    <Compile Include="Client\Binding\WSHttpBindingContext.cs" />
+    <Compile Include="Client\Binding\NetNamedPipeBindingContext.cs" />
+    <Compile Include="Client\Binding\Constants.cs" />
+    <Compile Include="Client\Binding\IWcfBinding.cs" />
     <Compile Include="Client\Proxy.cs" />
     <Compile Include="Client\ServiceProxy.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Client\Binding\BasicHttpBindingContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

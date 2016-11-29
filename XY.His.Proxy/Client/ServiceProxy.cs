@@ -17,93 +17,47 @@ using Serialize.Linq.Extensions;
 using Serialize.Linq.Nodes;
 using Serialize.Linq.Serializers;
 using Serialize.Linq.Factories;
+using XY.His.Client.Binding;
 
 namespace XY.His.Client
 {
     public class ServiceProxy
     {
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        
+                
         public static int Port = 50410;
-        public static string Host = "localhost";
+        public static string Host = "192.168.1.214";
+        public static BindingType BindingType = Binding.BindingType.BasicHttpBinding;
 
         public static Response CallService<T>(Action<T> action)
             where T : IServiceBase
         {
-            Proxy proxy = new Proxy();
-            T serviceProxy = GetProxy<T>(Host, Port).GetProxy<T>();
-            proxy.Host = Host;
-            proxy.Port = Port;
-            return ProcessRequest(serviceProxy, action);
+            T serviceProxy = ClientProxy<T>(Host, Port, BindingType).GetProxy<T>();
+         
+            return Process(serviceProxy, action);
         }
 
         public static Response CallService<T, TResult>(Func<T, TResult> func)
             where T : IServiceBase
         {
-            T serviceProxy = GetProxy<T>(Host, Port).GetProxy<T>();
-            return ProcessRequest(serviceProxy, func);
+            T serviceProxy = ClientProxy<T>(Host, Port, BindingType).GetProxy<T>();
+
+            return Process(serviceProxy, func);
         }
 
-        private static Proxy GetProxy<T>(string host, int port)
+        private static Proxy ClientProxy<T>(string host, int port, BindingType bindingType)
         {
-            Proxy proxy = new Proxy();
-            proxy.Host = host;
-            proxy.Port = port;
+            Proxy proxy = new Proxy()
+            {
+                Host = host,
+                Port = port,
+                BindingType = bindingType
+            };
             
             return proxy;
         }
 
-        //private static Response ProcessRequest(Request request)
-        //{
-        //    try
-        //    {                
-        //        XY.His.Contract.IServiceProvider serviceProvider = GetProxy<XY.His.Contract.IServiceProvider>();
-                             
-        //        byte[] inputParam = Serializer.SerializeBinary(request.InputParam);
-                                                
-        //        Response response = serviceProvider.Invoke(request.AssemblyName, request.ClassName, request.MethodName, inputParam);
-        //        if (response.Status == ResponseStatus.OK)
-        //        {                    
-        //            object[] results = Serializer.DeserializeBinary((byte[])response.Result);
-
-        //            //设置结果到响应
-        //            response.Result = results[0];
-        //        }
-
-        //        //返回服务处理响应
-        //        return response;
-        //    }
-        //    catch (SoapException soe)
-        //    {
-        //        //TODO:
-        //        return null;
-        //    }
-        //    catch (ThreadAbortException te)
-        //    {
-        //        //TODO:
-        //        return null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(string.Format("Execute Error:\n  Assembly={0}\n  Method={1}.{2}\n  {3}", request.AssemblyName, request.ClassName, request.MethodName, ex.Message));
-        //    }
-        //}
-
-        //private static T GetProxy<T>()
-        //    where T : IServiceBase
-        //{
-        //    try
-        //    {
-        //        return Proxy.GetProxy<T>();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.ErrorFormat("GetProxy<{0}> Exception: {1} \n{2}", typeof(T), GetErrMsg(ex), ex.StackTrace);
-        //        throw;
-        //    }
-        //}
-
-        private static Response ProcessRequest<T>(T proxy, Action<T> action)
+        private static Response Process<T>(T proxy, Action<T> action)
              where T : IServiceBase
         {
             string errMsg = string.Empty;
@@ -114,6 +68,7 @@ namespace XY.His.Client
                 Message = string.Empty
             };
 
+            using (proxy)
             try
             {
                 action(proxy);
@@ -146,6 +101,7 @@ namespace XY.His.Client
                     try
                     {
                         (proxy as IClientChannel).Abort();
+                        proxy.Dispose();
                     }
                     catch (Exception e)
                     {
@@ -157,7 +113,7 @@ namespace XY.His.Client
             return response;
         }
 
-        private static Response ProcessRequest<T, TResult>(T proxy, Func<T, TResult> func)
+        private static Response Process<T, TResult>(T proxy, Func<T, TResult> func)
              where T : IServiceBase
         {
             string errMsg = string.Empty;
@@ -166,8 +122,9 @@ namespace XY.His.Client
             {
                 Status = ResponseStatus.Error,
                 Message = string.Empty
-            };            
-
+            };          
+  
+            using (proxy)
             try
             {
                 response.Result = func(proxy);
@@ -194,12 +151,13 @@ namespace XY.His.Client
             {
                 response.Message = errMsg;
 
-                if (response.Status == ResponseStatus.Error)
+                if (response.Status == ResponseStatus.Error)               
                 {
                     Log.Error(response.Message);
                     try
                     {
                         (proxy as IClientChannel).Abort();
+                        proxy.Dispose();
                     }
                     catch (Exception e)
                     {

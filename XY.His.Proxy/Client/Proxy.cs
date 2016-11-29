@@ -6,48 +6,21 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Web;
 using System.ServiceModel.Channels;
+using XY.His.Client.Binding;
 using log4net;
 
 namespace XY.His.Client
 {
     public class Proxy
-    {
-        private const string EndPointName = "BasicHttpBinding_IServiceProvider";
-        private const long MaxReceivedMessageSize = 65535000;
-        private const int TimeOutMinutes = 10;
-        private string address = "http://{0}:{1}/XY{2}.svc";
-
-        protected string EndpointConfigurationName 
-        {
-            get { return EndPointName; } 
-        }
-
-        protected virtual string UserName { get; private set; }
-        protected virtual string Password { get; private set; }
-        protected virtual bool Credentials { get; private set; }
-        
+    {             
         public string Host { get; set; }
-        public int Port { get; set; }        
-
-        private TContract GetContract<TContract>()
-        {
-            ChannelFactory<TContract> ChannelFactory = new ChannelFactory<TContract>(EndpointConfigurationName);
-            if (Credentials)
-            {
-                System.Net.ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, sslPolicyErrors) => true);
-
-                var clientCredentials = ChannelFactory.Credentials;
-                clientCredentials.UserName.UserName = UserName;
-                clientCredentials.UserName.Password = Password;
-            }
-
-            return ChannelFactory.CreateChannel();
-        }
+        public int Port { get; set; }
+        public BindingType BindingType { get; set; }
 
         public T GetProxy<T>()
         {
             string service = typeof(T).Name.Substring(1);
-            string url = string.Format(address, Host, Port, service);
+            string url = string.Format(Constants.Uri, Host, Port, service);
             return GetProxy<T>(url, BindingType.BasicHttpBinding);
         }
 
@@ -57,137 +30,42 @@ namespace XY.His.Client
                 throw new ArgumentNullException("Url can not be null or empty.");
 
             EndpointAddress address = new EndpointAddress(url);
-            Binding binding = CreateBinding(bindingType);
+            System.ServiceModel.Channels.Binding binding = CreateWcfBinding(bindingType).Build();
             ChannelFactory<T> channelFactory = new ChannelFactory<T>(binding, address);
+
             return channelFactory.CreateChannel();
         }
-        
-        private Binding CreateBinding(BindingType bindingType)
+
+        private IWcfBinding CreateWcfBinding(BindingType bindingType)
         {
             switch (bindingType)
-            {
+            {                                       
                 case BindingType.BasicHttpBinding:
-                    return CreateBasicHttpBinding();                    
-
-                case BindingType.WSHttpBinding:
-                    return CreateWSHttpBinding();
-                    
-                case BindingType.NetTcpBinding:
-                    return CreateNetTcpBinding();
-
-                case BindingType.WebHttpBinding:
-                    return CreateWebHttpBinding();               
+                    return Binding.BasicHttpBindingFactory.Instance.BuildBinding();
 
                 case BindingType.NetNamedPipeBinding:
-                    return CreateNetNamedPipeBinding();
+                    return Binding.NetNamedPipeBindingFactory.Instance.BuildBinding();
+
+                case BindingType.NetTcpBinding:
+                    return Binding.NetTcpBindingFactory.Instance.BuildBinding();
+
+                case BindingType.WebHttpBinding:
+                    return Binding.WebHttpBindingFactory.Instance.BuildBinding();
 
                 case BindingType.WSDualHttpBinding:
-                    return CreateWSDualHttpBinding();
+                    return Binding.WSDualHttpBindingFactory.Instance.BuildBinding();
 
                 case BindingType.WSFederationHttpBinding:
-                    return CreateWSFederationHttpBinding();
+                    return Binding.WSFederationHttpBindingFactory.Instance.BuildBinding();
+
+                case BindingType.WSHttpBinding:
+                    return Binding.WSHttpBindingFactory.Instance.BuildBinding();
 
                 default:
-                    return CreateBasicHttpBinding();
+                    return Binding.BasicHttpBindingFactory.Instance.BuildBinding();
             }
-        }
-
-        private static Binding CreateBasicHttpBinding() 
-        {
-            TimeSpan ts  = new TimeSpan(0, TimeOutMinutes, 0);
-
-            BasicHttpBinding basicHttpBinding = new BasicHttpBinding() 
-            {
-                MaxBufferSize  = Int32.MaxValue,
-                MaxBufferPoolSize = Int32.MaxValue,
-                MaxReceivedMessageSize = Int32.MaxValue,
-                ReaderQuotas = new System.Xml.XmlDictionaryReaderQuotas()
-                {
-                    MaxArrayLength = Int32.MaxValue,
-                    MaxBytesPerRead = Int32.MaxValue,
-                    MaxDepth = Int32.MaxValue,
-                    MaxNameTableCharCount = Int32.MaxValue,
-                    MaxStringContentLength = Int32.MaxValue,
-                },
-                CloseTimeout = ts,
-                OpenTimeout = ts,
-                ReceiveTimeout = ts,
-                SendTimeout = ts
-            };    
-
-            return basicHttpBinding;
-        }
-
-        private static Binding CreateNetNamedPipeBinding()
-        {
-            NetNamedPipeBinding netNamedPipeBinding = new NetNamedPipeBinding()
-            {
-                MaxReceivedMessageSize = MaxReceivedMessageSize
-            };
-
-            return netNamedPipeBinding;
-        }        
-
-        private static Binding CreateNetTcpBinding()
-        {
-            NetTcpBinding netTcpBinding = new NetTcpBinding(SecurityMode.None) 
-            {
-                MaxReceivedMessageSize = MaxReceivedMessageSize
-            };
-
-            return netTcpBinding;
-        }
-
-        private static Binding CreateWSDualHttpBinding()
-        {
-            WSDualHttpBinding wsDualHttpBinding = new WSDualHttpBinding() 
-            {
-                MaxReceivedMessageSize = MaxReceivedMessageSize
-            };
-
-            return wsDualHttpBinding;
-        }
-
-        private static Binding CreateWebHttpBinding()
-        {
-            //WebHttpBinding ws = new WebHttpBinding();
-            //ws.MaxReceivedMessageSize = MaxReceivedMessageSize;
-            throw new NotImplementedException();
-        }
-
-        private static Binding CreateWSFederationHttpBinding()
-        {
-            WSFederationHttpBinding wsFederationHttpBinding = new WSFederationHttpBinding() 
-            {
-                MaxReceivedMessageSize = MaxReceivedMessageSize
-            };
-            
-            return wsFederationHttpBinding;
-        }
-
-        private static Binding CreateWSHttpBinding()
-        {
-            WSHttpBinding wsHttpBinding = new WSHttpBinding(SecurityMode.None)
-            {
-                MaxReceivedMessageSize = MaxReceivedMessageSize
-            };            
-            wsHttpBinding.Security.Message.ClientCredentialType = MessageCredentialType.Windows;
-            wsHttpBinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Windows;
-            return wsHttpBinding;
-        }        
+        }          
     }
-
-    public enum BindingType
-    {
-        BasicHttpBinding = 1,
-        WSHttpBinding = 2,
-        NetTcpBinding = 3,
-        WebHttpBinding = 4,
-        //NetPeerTcpBinding = 5,
-        NetNamedPipeBinding = 6,
-        WSDualHttpBinding = 7,
-        WSFederationHttpBinding = 8
-    } 
 }
 
 

@@ -23,6 +23,7 @@ namespace XY.His.Service
 {        
     [ErrorBehaviorAttribute(typeof(ErrorHandler))]
     [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
+
     public abstract class AbstractService<TEntity, TDTO> : Profile, IService<TDTO> 
         where TEntity: EntityBase, new()
         where TDTO : DtoBase, new()
@@ -134,7 +135,7 @@ namespace XY.His.Service
                 });
             }
         }
-
+        
         public virtual TDTO GetById(object key) 
         {
             using (var command = CommandWrapper)
