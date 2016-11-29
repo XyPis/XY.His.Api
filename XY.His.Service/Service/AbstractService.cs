@@ -15,7 +15,7 @@ using XY.His.Core;
 using XY.His.Contract.Service;
 using XY.His.Utils.Unity;
 using XY.His.Domain;
-using XY.His.Contract;
+using XY.His.Contract.Message;
 using Serialize.Linq.Nodes;
 using System.ServiceModel;
  

@@ -17,28 +17,42 @@ using Serialize.Linq.Extensions;
 using Serialize.Linq.Nodes;
 using Serialize.Linq.Serializers;
 using Serialize.Linq.Factories;
+
 namespace XY.His.Client
 {
     public class ServiceProxy
     {
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        
+        public static int Port = 50410;
+        public static string Host = "localhost";
 
         public static Response CallService<T>(Action<T> action)
             where T : IServiceBase
         {
-            T serviceProxy = GetProxy<T>();
-            
+            Proxy proxy = new Proxy();
+            T serviceProxy = GetProxy<T>(Host, Port).GetProxy<T>();
+            proxy.Host = Host;
+            proxy.Port = Port;
             return ProcessRequest(serviceProxy, action);
         }
 
         public static Response CallService<T, TResult>(Func<T, TResult> func)
             where T : IServiceBase
         {
-            T serviceProxy = GetProxy<T>();
-
+            T serviceProxy = GetProxy<T>(Host, Port).GetProxy<T>();
             return ProcessRequest(serviceProxy, func);
         }
-        
+
+        private static Proxy GetProxy<T>(string host, int port)
+        {
+            Proxy proxy = new Proxy();
+            proxy.Host = host;
+            proxy.Port = port;
+            
+            return proxy;
+        }
+
         //private static Response ProcessRequest(Request request)
         //{
         //    try
@@ -75,19 +89,19 @@ namespace XY.His.Client
         //    }
         //}
 
-        private static T GetProxy<T>()
-            where T : IServiceBase
-        {
-            try
-            {
-                return Proxy.GetProxy<T>();
-            }
-            catch (Exception ex)
-            {
-                Log.ErrorFormat("GetProxy<{0}> Exception: {1} \n{2}", typeof(T), GetErrMsg(ex), ex.StackTrace);
-                throw;
-            }
-        }
+        //private static T GetProxy<T>()
+        //    where T : IServiceBase
+        //{
+        //    try
+        //    {
+        //        return Proxy.GetProxy<T>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.ErrorFormat("GetProxy<{0}> Exception: {1} \n{2}", typeof(T), GetErrMsg(ex), ex.StackTrace);
+        //        throw;
+        //    }
+        //}
 
         private static Response ProcessRequest<T>(T proxy, Action<T> action)
              where T : IServiceBase

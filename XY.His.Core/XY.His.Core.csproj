@@ -91,7 +91,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Core\EFRepository.cs" />
+    <Compile Include="Core\EntityFramework\EFRepository.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Core\CommandWrapper.cs" />
@@ -100,8 +100,8 @@
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\EFUnitOfWork.cs" />
-    <Compile Include="Core\Initializer.cs" />
+    <Compile Include="Core\EntityFramework\EFUnitOfWork.cs" />
+    <Compile Include="Core\EntityFramework\Initializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

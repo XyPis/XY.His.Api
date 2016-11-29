@@ -18,7 +18,7 @@ namespace XY.His.Service
        
         public static void Init(string connectionString, params Type[] excludeTypes)
         {
-            Core.Initializer.Init<XyDbContext>(connectionString);
+            XY.His.Core.EntityFramework.Initializer.Init<XyDbContext>(connectionString);
 
             var contractAssembly = typeof(XY.His.Contract.Service.IService<>).Assembly;
             var serviceAssembly = typeof(XY.His.Service.AbstractService<,>).Assembly;

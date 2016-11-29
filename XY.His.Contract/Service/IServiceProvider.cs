@@ -8,7 +8,7 @@ using XY.His.Contract.Service;
 using XY.His.Contract.Message;
 using Serialize.Linq.Nodes;
 
-namespace XY.His.Contract
+namespace XY.His.Contract.Service
 {    
     [ServiceContract]
     public interface IServiceProvider : IServiceBase

@@ -9,7 +9,7 @@ using Microsoft.Practices.Unity;
 using Z.EntityFramework.Extensions;
 using log4net;
 
-namespace XY.His.Core
+namespace XY.His.Core.EntityFramework
 {
     public class EFUnitOfWork<TDbContext> : IUnitOfWork 
         where TDbContext : DbContext
@@ -65,10 +65,10 @@ namespace XY.His.Core
             return GetRepository<TEntity>().GetById(ids);
         }
 
-        public IQueryable<TEntity> Get<TEntity>() 
+        public IQueryable<TEntity> GetAll<TEntity>() 
             where TEntity : class, new()
         {
-            return GetRepository<TEntity>().Get();
+            return GetRepository<TEntity>().GetAll();
         }
 
         public void Query(Action query)
@@ -109,28 +109,28 @@ namespace XY.His.Core
             where TEntityOuter : class, new()
             where TEntityInner : class, new()
         {
-            return GetRepository<TEntityOuter>().Get().Join(GetRepository<TEntityInner>().Get(), outerKeySelector, innerKeySelector, resultSelector).AsQueryable();
+            return GetRepository<TEntityOuter>().GetAll().Join(GetRepository<TEntityInner>().GetAll(), outerKeySelector, innerKeySelector, resultSelector).AsQueryable();
         }
 
         public IQueryable<TResult> Join<TEntityOuter, TEntityInner, TResult>(Func<TEntityOuter, object> outerKeySelector, Func<TEntityInner, object> innerKeySelector, Func<TEntityOuter, TEntityInner, TResult> resultSelector, IEqualityComparer<object> comparer)
             where TEntityOuter : class, new()
             where TEntityInner : class, new()
         {
-            return GetRepository<TEntityOuter>().Get().Join(GetRepository<TEntityInner>().Get(), outerKeySelector, innerKeySelector, resultSelector, comparer).AsQueryable();
+            return GetRepository<TEntityOuter>().GetAll().Join(GetRepository<TEntityInner>().GetAll(), outerKeySelector, innerKeySelector, resultSelector, comparer).AsQueryable();
         }
 
         public IQueryable<TResult> LeftJoin<TEntityOuter, TEntityInner, TResult>(Func<TEntityOuter, object> outerKeySelector, Func<TEntityInner, object> innerKeySelector, Func<TEntityOuter, TEntityInner, TResult> resultSelector)
             where TEntityOuter : class, new()
             where TEntityInner : class, new()
         {
-            return GetRepository<TEntityOuter>().Get().GroupJoin(GetRepository<TEntityInner>().Get(), outerKeySelector, innerKeySelector, (p, q) => resultSelector(p, q.FirstOrDefault())).AsQueryable();
+            return GetRepository<TEntityOuter>().GetAll().GroupJoin(GetRepository<TEntityInner>().GetAll(), outerKeySelector, innerKeySelector, (p, q) => resultSelector(p, q.FirstOrDefault())).AsQueryable();
         }
 
         public IQueryable<TResult> LeftJoin<TEntityOuter, TEntityInner, TResult>(Func<TEntityOuter, object> outerKeySelector, Func<TEntityInner, object> innerKeySelector, Func<TEntityOuter, TEntityInner, TResult> resultSelector, IEqualityComparer<object> comparer)
             where TEntityOuter : class, new()
             where TEntityInner : class, new()
         {
-            return GetRepository<TEntityOuter>().Get().GroupJoin(GetRepository<TEntityInner>().Get(), outerKeySelector, innerKeySelector, (p, q) => resultSelector(p, q.FirstOrDefault()), comparer).AsQueryable();
+            return GetRepository<TEntityOuter>().GetAll().GroupJoin(GetRepository<TEntityInner>().GetAll(), outerKeySelector, innerKeySelector, (p, q) => resultSelector(p, q.FirstOrDefault()), comparer).AsQueryable();
         }
 
         private IRepository<TEntity> GetRepository<TEntity>()
@@ -157,11 +157,11 @@ namespace XY.His.Core
             return GetRepository<TEntity>().Delete(queryExpression);
         }
 
-        public int Update<TEntity>(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, TEntity>> updateExpression)
-            where TEntity : class, new()
-        {
-            return GetRepository<TEntity>().Update(filterExpression, updateExpression);
-        }
+        //public int Update<TEntity>(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, TEntity>> updateExpression)
+        //    where TEntity : class, new()
+        //{
+        //    return GetRepository<TEntity>().Update(filterExpression, updateExpression);
+        //}
         #endregion
 
         #region Batch operations

@@ -37,7 +37,7 @@ namespace XY.His.Service.UnitTests
                 string unitTestType = string.Format("{0}UnitTest", serviceType);
 
                 var dtos = dtoAssembly.GetTypes()
-                    .Where(x => x.IsSubclassOf(typeof(XY.His.Contract.DtoBase)))
+                    .Where(x => x.IsSubclassOf(typeof(XY.His.Contract.Message.DtoBase)))
                     .Where(x => x.Name.ToLower() == dtoType.ToLower()).ToList();
 
                 var contracts = dtoAssembly.GetTypes()                    

@@ -30,7 +30,7 @@ namespace XY.His.Core
             where TEntity : class, new();
         #endregion
     
-        IQueryable<TEntity> Get<TEntity>() 
+        IQueryable<TEntity> GetAll<TEntity>() 
             where TEntity : class, new();
 
         void Query(Action query);
@@ -63,8 +63,8 @@ namespace XY.His.Core
         IQueryable<TEntity> Get<TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null) 
             where TEntity : class, new();
 
-        int Update<TEntity>(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, TEntity>> updateExpression) 
-            where TEntity : class, new();
+        //int Update<TEntity>(Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, TEntity>> updateExpression) 
+        //    where TEntity : class, new();
 
         int Delete<TEntity>(Expression<Func<TEntity, bool>> queryExpression) 
             where TEntity : class, new();

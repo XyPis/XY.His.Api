@@ -7,8 +7,8 @@ using System.Web;
 using Microsoft.Practices.Unity;
 using XY.His.Utils.Unity;
 
-namespace XY.His.Core
-{   
+namespace XY.His.Core.EntityFramework
+{
     public class Initializer
     {
         public static void Init<TDbContext>(string connectionString) where TDbContext : DbContext

@@ -9,7 +9,7 @@ using EntityFramework.Extensions;
 using log4net;
 using Z.EntityFramework.Extensions;
 
-namespace XY.His.Core
+namespace XY.His.Core.EntityFramework
 {
     internal class EFRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, new()
@@ -64,7 +64,7 @@ namespace XY.His.Core
             return this.EFSet.Find(ids);
         }
 
-        public virtual IQueryable<TEntity> Get()
+        public virtual IQueryable<TEntity> GetAll()
         {
             return this.EFSet;
         }

@@ -16,19 +16,13 @@ namespace XY.His.Core
 
         void Delete(T entity);
 
-        IQueryable<T> Get();
+        IQueryable<T> GetAll();
 
         T GetById(params object[] ids);
 
         void DeleteById(params object[] ids);
 
         int DeleteAll();
-
-        IQueryable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
-
-        int Update(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T>> updateExpression);
-
-        int Delete(Expression<Func<T, bool>> queryExpression);
 
         void AddBatch(IEnumerable<T> entities);
 
@@ -41,5 +35,11 @@ namespace XY.His.Core
         void BulkDelete(IEnumerable<T> entities);
 
         void BulkUpdate(IEnumerable<T> entities);
+
+        IQueryable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
+
+        //int Update(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T>> updateExpression);
+
+        int Delete(Expression<Func<T, bool>> queryExpression);
     }
 }

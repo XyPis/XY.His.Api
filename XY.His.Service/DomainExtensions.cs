@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using XY.His.Domain;
 
-namespace XY.His
+namespace XY.His.Service
 {
     public static class DomainExtensions
     {

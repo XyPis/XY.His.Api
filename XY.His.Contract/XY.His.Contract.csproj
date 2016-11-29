@@ -49,8 +49,8 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="DtoBase.cs" />
-    <Compile Include="IServiceProvider.cs" />
+    <Compile Include="Message\DtoBase.cs" />
+    <Compile Include="Service\IServiceProvider.cs" />
     <Compile Include="Message\BS\BsDocLevelDto.cs" />
     <Compile Include="Message\BS\BsDoctorDto.cs" />
     <Compile Include="Message\BS\BsDrugFormDto.cs" />

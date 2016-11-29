@@ -9,7 +9,7 @@ using XY.His.Utils;
 
 namespace XY.His.Service
 {
-    public class ServiceProvider : XY.His.Contract.IServiceProvider
+    public class ServiceProvider : XY.His.Contract.Service.IServiceProvider
     {
         private bool disposed = false;
 

@@ -15,8 +15,7 @@ namespace XY.His.Client
         private const string EndPointName = "BasicHttpBinding_IServiceProvider";
         private const long MaxReceivedMessageSize = 65535000;
         private const int TimeOutMinutes = 10;
-        //private const string Url = "http://localhost:50410/XY{0}.svc";
-        private const string Url = "http://localhost:8088/XY{0}.svc";
+        private string address = "http://{0}:{1}/XY{2}.svc";
 
         protected string EndpointConfigurationName 
         {
@@ -26,8 +25,11 @@ namespace XY.His.Client
         protected virtual string UserName { get; private set; }
         protected virtual string Password { get; private set; }
         protected virtual bool Credentials { get; private set; }
+        
+        public string Host { get; set; }
+        public int Port { get; set; }        
 
-        public TContract GetContract<TContract>()
+        private TContract GetContract<TContract>()
         {
             ChannelFactory<TContract> ChannelFactory = new ChannelFactory<TContract>(EndpointConfigurationName);
             if (Credentials)
@@ -42,26 +44,25 @@ namespace XY.His.Client
             return ChannelFactory.CreateChannel();
         }
 
-        public static T GetProxy<T>()
+        public T GetProxy<T>()
         {
-            return GetProxy<T>(Url, BindingType.BasicHttpBinding);
+            string service = typeof(T).Name.Substring(1);
+            string url = string.Format(address, Host, Port, service);
+            return GetProxy<T>(url, BindingType.BasicHttpBinding);
         }
 
-        public static T GetProxy<T>(string url, BindingType bindingType)
+        public T GetProxy<T>(string url, BindingType bindingType)
         {
             if (string.IsNullOrWhiteSpace(url)) 
                 throw new ArgumentNullException("Url can not be null or empty.");
 
-            string realServiceName = typeof(T).Name.Substring(1);
-            string uri = string.Format(Url, realServiceName);
-
-            EndpointAddress address = new EndpointAddress(uri);
+            EndpointAddress address = new EndpointAddress(url);
             Binding binding = CreateBinding(bindingType);
             ChannelFactory<T> channelFactory = new ChannelFactory<T>(binding, address);
             return channelFactory.CreateChannel();
         }
         
-        private static Binding CreateBinding(BindingType bindingType)
+        private Binding CreateBinding(BindingType bindingType)
         {
             switch (bindingType)
             {

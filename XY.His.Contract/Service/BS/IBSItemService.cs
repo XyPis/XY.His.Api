@@ -5,8 +5,7 @@ using System.ServiceModel;
 using XY.His.Contract.Message.BS;
 
 namespace XY.His.Contract.Service.BS
-{ 
-    [ServiceContract]
+{     
     public interface IBSItemService : IService<BsItemDto>
     {
     }

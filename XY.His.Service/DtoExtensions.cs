@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using XY.His.Contract.Message;
 using AutoMapper;
 
-namespace XY.His.Contract
+namespace XY.His.Service
 {
     public static class DtoExtensions
     {
