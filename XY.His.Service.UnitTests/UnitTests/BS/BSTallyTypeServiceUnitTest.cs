@@ -33,7 +33,7 @@ namespace XY.His.Service.UnitTests.BS
             {
                 Code = "ABC",
                 Name = "test",
-                TallyGroupId = 201,
+                TallyGroupId = 21,
                 PyCode = "XXX",
                 WbCode = "YYY",
                 OrderBy = 3,

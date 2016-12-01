@@ -8,9 +8,9 @@ using System.ServiceModel.Channels;
 
 namespace XY.His.Client.Binding
 {
-    public class NetTcpBindingContext : IWcfBinding
+    public class NetTcpBindingContext : IWcfConfiguration
     {        
-        public System.ServiceModel.Channels.Binding Build()
+        public System.ServiceModel.Channels.Binding CreateBinding()
         {
             NetTcpBinding netTcpBinding = new NetTcpBinding(SecurityMode.None)
             {

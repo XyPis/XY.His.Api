@@ -8,9 +8,9 @@ using System.ServiceModel.Channels;
 
 namespace XY.His.Client.Binding
 {
-    public class NetNamedPipeBindingContext : IWcfBinding
+    public class NetNamedPipeBindingContext : IWcfConfiguration
     {
-        public System.ServiceModel.Channels.Binding Build()
+        public System.ServiceModel.Channels.Binding CreateBinding()
         {
             NetNamedPipeBinding netNamedPipeBinding = new NetNamedPipeBinding()
             {

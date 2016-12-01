@@ -6,19 +6,27 @@ using System.ServiceModel.Activation;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using log4net;
 
-namespace XY.His.Wcf
+namespace XY.His.Server.ServiceActivation
 {
     public class DynamicHostFactory : ServiceHostFactory
     {
+        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public override ServiceHostBase CreateServiceHost(string constructorString, Uri[] baseAddresses)
         {                        
             string errMsg = string.Empty;
 
-            var serviceType = ServiceConfig.ServiceTypes.Where(x => x.Name == constructorString).FirstOrDefault();
+            var serviceType = ServiceConfig.ServiceTypes
+                .Where(x => x.Name == constructorString)
+                .FirstOrDefault();
+
             if (serviceType == null)
             {
                 errMsg = string.Format("No service named '{0}' was found in service config.", constructorString);
+                Log.Error(errMsg);
+
                 throw new Exception(errMsg);
             }
            
@@ -29,7 +37,9 @@ namespace XY.His.Wcf
                 .FirstOrDefault();
             if (contractType == null)
             {
-                throw new Exception(string.Format("Invalid contract type '{0}'", contractType.FullName));
+                errMsg = string.Format("Invalid contract type '{0}'", contractType.FullName);
+                Log.Error(errMsg);
+                throw new Exception(errMsg);
             }
 
             ServiceHost host = new ServiceHost(serviceType, baseAddresses);
@@ -37,8 +47,8 @@ namespace XY.His.Wcf
             foreach (Uri address in baseAddresses)
             {
                 foreach (var type in serviceType.GetInterfaces()
-                .Where(x => x.IsAssignableFrom(serviceType))
-                .Where(x => x.Name == contractName))
+                    .Where(x => x.IsAssignableFrom(serviceType))
+                    .Where(x => x.Name == contractName))
                 {
                     BasicHttpsBinding basicHttpsBinding = new BasicHttpsBinding();
                     basicHttpsBinding.Name = serviceType.Name;
@@ -50,8 +60,7 @@ namespace XY.His.Wcf
                         host.AddServiceEndpoint(type, basicHttpsBinding, address);
                     }
                 }
-            }
-            
+            }            
             
             //NetTcpBinding tcpBinding = new NetTcpBinding();                
             //tcpBinding.Security.Mode = SecurityMode.Transport;                
@@ -69,19 +78,7 @@ namespace XY.His.Wcf
             //serviceDebugBehavior.IncludeExceptionDetailInFaults = true;            
 
             return host;
-        }
-
-        bool IsDerivedOfGenericType(Type type, Type genericType)
-        {
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == genericType)
-                return true;
-
-            if (type.BaseType != null)
-            {
-                return IsDerivedOfGenericType(type.BaseType, genericType);
-            }
-            return false;
-        }
+        }        
 
     }
 }
@@ -104,7 +101,6 @@ namespace XY.His.Wcf
 //        // Add metdata behavior for generating wsdl
 //        var metadata = new ServiceMetadataBehavior();
 //        metadata.HttpGetEnabled = true;
-//        host.Description.Behaviors.Add(metadata);
-             
+//        host.Description.Behaviors.Add(metadata);             
 //        return host;
 //    }

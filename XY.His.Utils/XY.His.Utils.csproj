@@ -92,11 +92,12 @@
     <Compile Include="Extensions\ObjectExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\TypeExtension.cs" />
-    <Compile Include="Helpers\DataTimeHelper.cs" />
-    <Compile Include="Helpers\PropertyHelper.cs" />
+    <Compile Include="DataTimeHelper.cs" />
+    <Compile Include="PropertyHelper.cs" />
     <Compile Include="InvokeHelper.cs" />
     <Compile Include="Json\JsonUtils.cs" />
     <Compile Include="Serializer.cs" />
+    <Compile Include="TypeHelper.cs" />
     <Compile Include="Unity\IoC.cs" />
     <Compile Include="Unity\UnityContainerExtensions.cs" />
     <Compile Include="Unity\UnityContext.cs" />

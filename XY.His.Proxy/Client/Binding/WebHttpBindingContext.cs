@@ -8,9 +8,9 @@ using System.ServiceModel.Channels;
 
 namespace XY.His.Client.Binding
 {
-    public class WebHttpBindingContext : IWcfBinding
+    public class WebHttpBindingContext : IWcfConfiguration
     {
-        public System.ServiceModel.Channels.Binding Build()
+        public System.ServiceModel.Channels.Binding CreateBinding()
         {
             throw new NotImplementedException();
         }

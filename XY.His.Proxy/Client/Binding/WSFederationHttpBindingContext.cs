@@ -8,9 +8,9 @@ using System.ServiceModel.Channels;
 
 namespace XY.His.Client.Binding
 {
-    public class WSFederationHttpBindingContext : IWcfBinding
+    public class WSFederationHttpBindingContext : IWcfConfiguration
     {        
-        public System.ServiceModel.Channels.Binding Build()
+        public System.ServiceModel.Channels.Binding CreateBinding()
         {
             WSFederationHttpBinding wsFederationHttpBinding = new WSFederationHttpBinding()
             {

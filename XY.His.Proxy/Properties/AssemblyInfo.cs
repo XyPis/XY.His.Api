@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("XY.His.Proxy")]
+[assembly: AssemblyTitle("XY.His.Client")]
 [assembly: AssemblyDescription("Proxy classes that provide service access support in client")]
 
 [assembly: ComVisible(false)]

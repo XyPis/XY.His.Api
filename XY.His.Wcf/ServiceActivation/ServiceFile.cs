@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Hosting;
 using System.IO;
 
-namespace XY.His.Wcf
+namespace XY.His.Server.ServiceActivation
 {
     public class ServiceFile : VirtualFile
     {
@@ -34,16 +34,16 @@ namespace XY.His.Wcf
         {
             var serviceDef = new MemoryStream();
             var defWriter = new StreamWriter(serviceDef);
-
-            var serviceHostDef = string.Format(ServiceConfig.ServiceHostDef, ServiceConfig.ServiceDebug, this.GetService(), ServiceConfig.TypeOfHostFactory);
-                            
-            //defWriter.Write("<%@ ServiceHost Language=\"C#\" Debug=\"true\" Service=\"" + this.GetService() + "\"  " +
-            //                "Factory=\"XY.His.Wcf.DynamicHostFactory, XY.His.Wcf\" %>");
+            string serviceName = this.GetService();
+            var type = ServiceConfig.HostFactoryType;
+            var typeName = string.Format("{0}, {1}", type.FullName, type.Assembly.FullName);
+            var serviceHostDef = string.Format(ServiceConfig.ServiceHostDef, ServiceConfig.ServiceDebug, serviceName, typeName);                            
 
             defWriter.Write(serviceHostDef);
             defWriter.Flush();
 
             serviceDef.Position = 0;
+            
             return serviceDef;
         }
     }

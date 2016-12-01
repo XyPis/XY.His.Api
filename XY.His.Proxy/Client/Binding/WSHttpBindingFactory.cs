@@ -9,7 +9,7 @@ namespace XY.His.Client.Binding
 {
     public class WSHttpBindingFactory : BindingFactory
     {
-        public override IWcfBinding BuildBinding()
+        public override IWcfConfiguration Configure()
         {
             return new WSHttpBindingContext();
         }

@@ -30,39 +30,39 @@ namespace XY.His.Client
                 throw new ArgumentNullException("Url can not be null or empty.");
 
             EndpointAddress address = new EndpointAddress(url);
-            System.ServiceModel.Channels.Binding binding = CreateWcfBinding(bindingType).Build();
+            System.ServiceModel.Channels.Binding binding = Configuration(bindingType).CreateBinding();
             ChannelFactory<T> channelFactory = new ChannelFactory<T>(binding, address);
 
             return channelFactory.CreateChannel();
         }
 
-        private IWcfBinding CreateWcfBinding(BindingType bindingType)
+        private IWcfConfiguration Configuration(BindingType bindingType)
         {
             switch (bindingType)
-            {                                       
+            {
                 case BindingType.BasicHttpBinding:
-                    return Binding.BasicHttpBindingFactory.Instance.BuildBinding();
+                    return Binding.BasicHttpBindingFactory.Instance.Configure();
 
                 case BindingType.NetNamedPipeBinding:
-                    return Binding.NetNamedPipeBindingFactory.Instance.BuildBinding();
+                    return Binding.NetNamedPipeBindingFactory.Instance.Configure();
 
                 case BindingType.NetTcpBinding:
-                    return Binding.NetTcpBindingFactory.Instance.BuildBinding();
+                    return Binding.NetTcpBindingFactory.Instance.Configure();
 
                 case BindingType.WebHttpBinding:
-                    return Binding.WebHttpBindingFactory.Instance.BuildBinding();
+                    return Binding.WebHttpBindingFactory.Instance.Configure();
 
                 case BindingType.WSDualHttpBinding:
-                    return Binding.WSDualHttpBindingFactory.Instance.BuildBinding();
+                    return Binding.WSDualHttpBindingFactory.Instance.Configure();
 
                 case BindingType.WSFederationHttpBinding:
-                    return Binding.WSFederationHttpBindingFactory.Instance.BuildBinding();
+                    return Binding.WSFederationHttpBindingFactory.Instance.Configure();
 
                 case BindingType.WSHttpBinding:
-                    return Binding.WSHttpBindingFactory.Instance.BuildBinding();
+                    return Binding.WSHttpBindingFactory.Instance.Configure();
 
                 default:
-                    return Binding.BasicHttpBindingFactory.Instance.BuildBinding();
+                    return Binding.BasicHttpBindingFactory.Instance.Configure();
             }
         }          
     }

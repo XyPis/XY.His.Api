@@ -8,9 +8,9 @@ using System.ServiceModel.Channels;
 
 namespace XY.His.Client.Binding
 {
-    public class BasicHttpBindingContext : IWcfBinding
+    public class BasicHttpBindingContext : IWcfConfiguration
     {        
-        public System.ServiceModel.Channels.Binding Build()
+        public System.ServiceModel.Channels.Binding CreateBinding()
         {
             TimeSpan ts = new TimeSpan(0, Constants.TimeoutMinutes, 0);
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace XY.His.Wcf
+namespace XY.His.Server.ServiceActivation
 {
     public class ServiceConfig
     {
@@ -45,9 +45,10 @@ namespace XY.His.Wcf
             get { return true; }
         }
 
-        public static string TypeOfHostFactory 
+        public static Type HostFactoryType
         {
-            get { return "XY.His.Wcf.DynamicHostFactory, XY.His.Wcf"; }            
+            get;
+            set;
         }
 
         public static string ServiceHostDef 

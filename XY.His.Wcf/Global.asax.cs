@@ -11,15 +11,17 @@ using System.ServiceModel.Activation;
 using System.Web.Routing;
 using System.Web.Hosting;
 using XY.His.Service;
+using XY.His.Server.Deploy;
 
-namespace XY.His.Wcf
+namespace XY.His.Server
 {
     public class Global : System.Web.HttpApplication
     {
         protected void Application_Start(object sender, EventArgs e)
         {
             HostingEnvironment.RegisterVirtualPathProvider(new ServicePathProvider());
-            Initializer.Init();
+
+            Configuration.Configure();
         }
 
         protected void Session_Start(object sender, EventArgs e)

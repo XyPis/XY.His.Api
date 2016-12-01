@@ -75,7 +75,7 @@
     <Compile Include="Client\Binding\WSHttpBindingContext.cs" />
     <Compile Include="Client\Binding\NetNamedPipeBindingContext.cs" />
     <Compile Include="Client\Binding\Constants.cs" />
-    <Compile Include="Client\Binding\IWcfBinding.cs" />
+    <Compile Include="Client\Binding\IWcfConfiguration.cs" />
     <Compile Include="Client\Proxy.cs" />
     <Compile Include="Client\ServiceProxy.cs">
       <SubType>Code</SubType>

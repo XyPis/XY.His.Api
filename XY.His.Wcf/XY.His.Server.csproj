@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XY.His.Wcf</RootNamespace>
-    <AssemblyName>XY.His.Wcf</AssemblyName>
+    <RootNamespace>XY.His.Server</RootNamespace>
+    <AssemblyName>XY.His.Server</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <UseIISExpress>true</UseIISExpress>
@@ -105,15 +105,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="DynamicHostFactory.cs" />
-    <Compile Include="ServiceConfig.cs" />
-    <Compile Include="ServiceFile.cs" />
-    <Compile Include="ServicePathProvider.cs" />
+    <Compile Include="ServiceActivation\ServiceConfig1.cs" />
+    <Compile Include="ServiceActivation\DynamicHostFactory.cs" />
+    <Compile Include="ServiceActivation\ServiceConfig.cs" />
+    <Compile Include="ServiceActivation\ServiceFile.cs" />
+    <Compile Include="ServiceActivation\ServicePathProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Initializer.cs" />
+    <Compile Include="ServiceActivation\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

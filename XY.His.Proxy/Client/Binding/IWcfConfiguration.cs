@@ -7,16 +7,16 @@ using System.ServiceModel.Channels;
 
 namespace XY.His.Client.Binding
 {
-    public interface IWcfBinding
+    public interface IWcfConfiguration
     {
-        System.ServiceModel.Channels.Binding Build();
+        System.ServiceModel.Channels.Binding CreateBinding();
     }
 
     public abstract class BindingFactory
     {
         protected BindingFactory() { }
 
-        public virtual IWcfBinding BuildBinding() 
+        public virtual IWcfConfiguration Configure()
         {
             throw new NotImplementedException();
         }

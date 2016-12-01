@@ -8,7 +8,7 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.ServiceModel.Channels;
 
-namespace XY.His.Wcf
+namespace XY.His.Server.ServiceActivation
 {
     public static class ServiceConfig1
     {
@@ -20,7 +20,6 @@ namespace XY.His.Wcf
                 Configure(binding);
                 return binding;
             }
-
         }
 
 
@@ -72,10 +71,7 @@ namespace XY.His.Wcf
                 throw new ArgumentException("Argument 'behavior' cannot be null. Cannot configure debug behavior.");
             }
 
-
             behavior.IncludeExceptionDetailInFaults = true;
-
         }
     }
- 
 }

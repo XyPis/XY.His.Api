@@ -92,11 +92,11 @@ namespace XY.His.Client
                 errMsg = GetErrMsg(ex);
             }
             finally
-            {
-                response.Message = errMsg;
+            {                
                 if (response.Status == ResponseStatus.Error)
                 {
-                    Log.Error(response.Message);
+                    response.Message = errMsg;
+                    Log.Error(errMsg);
 
                     try
                     {
@@ -149,11 +149,10 @@ namespace XY.His.Client
             }
             finally
             {
-                response.Message = errMsg;
-
                 if (response.Status == ResponseStatus.Error)               
                 {
-                    Log.Error(response.Message);
+                    response.Message = errMsg;
+                    Log.Error(errMsg);
                     try
                     {
                         (proxy as IClientChannel).Abort();
@@ -175,11 +174,13 @@ namespace XY.His.Client
             {
                 ex = ex.InnerException;
             }
-            
-            string errMsg = (ex == null) ? 
-                string.Empty : string.Format("{0} Error: {1} \n{2}", ex.GetType().Name, ex.Message, ex.StackTrace);
 
-            return errMsg;
+            if (ex == null)
+            {
+                return string.Empty;
+            }
+            
+            return string.Format("{0} Error: {1} \n{2}", ex.GetType().Name, ex.Message, ex.StackTrace);
         }
     }
 }
